@@ -1,5 +1,6 @@
 package wtf.beatrice.uhccore.listeners;
 
+import org.bukkit.inventory.ItemStack;
 import wtf.beatrice.uhccore.UhcCore;
 import wtf.beatrice.uhccore.utils.Cache;
 import wtf.beatrice.uhccore.utils.Debugger;
@@ -63,6 +64,10 @@ public class PlayerDeathRespawnListener implements Listener
 
             // Spawn a Firework where the player died.
             UhcUtils.spawnFirework(player.getLocation(), 15L);
+
+            // Drop golden apple
+            ItemStack gapple = new ItemStack(Material.GOLDEN_APPLE, 1);
+            event.getDrops().add(gapple);
 
             // Load the player name.
             String playerName = player.getName();
