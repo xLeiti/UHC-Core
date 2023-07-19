@@ -128,7 +128,13 @@ public class StartCommand {
             {
                 spawnWorld.setPVP(true);
                 Nether.setPVP(true);
+                plugin.getServer().broadcastMessage("§6PVP enabled!");
             }, Cache.peaceperiod * 20L * 60L);
+
+            plugin.getServer().getScheduler().runTaskLaterAsynchronously(plugin, ()->
+            {
+                plugin.getServer().broadcastMessage("§6Horizontal border has stopped shrinking.");
+            }, Cache.borderTime * 20L * 60L);
 
         });
     }
