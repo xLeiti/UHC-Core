@@ -99,6 +99,8 @@ public class FileUtils
         Cache.borderX = config.getInt(ConfigEntry.BORDER_CENTER_X.path);
         Cache.borderZ = config.getInt(ConfigEntry.BORDER_CENTER_Z.path);
         Cache.borderSize = config.getInt(ConfigEntry.BORDER_SIZE.path);
+        Cache.borderSizeFinal = config.getInt(ConfigEntry.BORDER_SIZE_FINAL.path);
+        Cache.borderTime = config.getInt(ConfigEntry.BORDER_SHRINK_TIME.path);
 
         String spawnWorldName = config.getString(ConfigEntry.SPAWN_WORLD.path);
         if(spawnWorldName != null)

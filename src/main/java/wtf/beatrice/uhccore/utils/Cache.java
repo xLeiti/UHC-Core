@@ -48,7 +48,7 @@ public class Cache {
 
     public static List<Location>fireworksLocations = new ArrayList<>();
 
-    public static int borderX, borderZ, borderSize;
+    public static int borderX, borderZ, borderSize, borderSizeFinal, borderTime;
 
     // boolean to store whether the server has been set up for gameplay or not.
     // TODO: we haven't implemented any checks for this boolean in the loading phase.

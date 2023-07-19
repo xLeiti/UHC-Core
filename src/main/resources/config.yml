@@ -6,7 +6,9 @@ settings:
   border:
     center-x: 0
     center-z: 0
-    size: 4000
+    size: 1500
+    size_final: 100
+    time: 120
 spawn:
   world: __UNSET__
   x: 0.0

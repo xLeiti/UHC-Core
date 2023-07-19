@@ -28,6 +28,9 @@ public class StartCommand {
         int borderX = Cache.borderX;
         int borderZ = Cache.borderZ;
         int borderSize = Cache.borderSize;
+        int borderSizeFinal = Cache.borderSizeFinal;
+        int borderTime = Cache.borderTime;
+
         int range = borderSize / 2;
 
         Location borderCenter = new Location(spawnWorld, borderX, 64, borderZ);
@@ -112,6 +115,7 @@ public class StartCommand {
                 spawnWorld.setDifficulty(Difficulty.NORMAL);
                 spawnWorld.getWorldBorder().setCenter(borderCenter);
                 spawnWorld.getWorldBorder().setSize(borderSize);
+                spawnWorld.getWorldBorder().setSize(borderSizeFinal, borderTime*60L);
                 plugin.getLogger().log(Level.INFO,"UHC Started!");
             });
         });
