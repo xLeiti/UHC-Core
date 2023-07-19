@@ -20,6 +20,9 @@ public class Cache {
     // Integer to store how many teams are alive and playing.
     public static int playingTeams;
 
+    // Peace-period in minutes.
+    public static int peaceperiod;
+
     // Boolean to know if friendly fire is enabled, and to know if movement is allowed.
     public static boolean friendlyFire, allowMovement = true;
 

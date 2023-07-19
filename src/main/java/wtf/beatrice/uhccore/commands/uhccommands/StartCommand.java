@@ -24,6 +24,11 @@ public class StartCommand {
         HashMap<Integer, Location> spawnPerTeam = new HashMap<>();
 
         World spawnWorld = plugin.getServer().getWorld(Cache.uhcWorlds.get(0));
+        World Nether = plugin.getServer().getWorld(Cache.uhcWorlds.get(1));
+
+        spawnWorld.setPVP(false);
+        Nether.setPVP(false);
+
 
         int borderX = Cache.borderX;
         int borderZ = Cache.borderZ;
@@ -118,6 +123,13 @@ public class StartCommand {
                 spawnWorld.getWorldBorder().setSize(borderSizeFinal, borderTime*60L);
                 plugin.getLogger().log(Level.INFO,"UHC Started!");
             });
+
+            plugin.getServer().getScheduler().runTaskLaterAsynchronously(plugin, ()->
+            {
+                spawnWorld.setPVP(true);
+                Nether.setPVP(true);
+            }, Cache.peaceperiod * 20L * 60L);
+
         });
     }
 

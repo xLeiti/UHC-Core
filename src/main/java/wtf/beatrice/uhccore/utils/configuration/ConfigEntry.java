@@ -7,6 +7,7 @@ public enum ConfigEntry
     LOBBY_WORLDS("settings.lobbyworlds"),
 
     FRIENDLY_FIRE("settings.friendly-fire"),
+    PEACE_PERIOD("settings.peaceperiod"),
 
     TEAMS_NUMBER("settings.teams"),
     TEAMS_NAMES("teams"),

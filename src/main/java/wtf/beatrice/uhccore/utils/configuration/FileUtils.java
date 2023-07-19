@@ -80,6 +80,7 @@ public class FileUtils
         Cache.lobbyWorlds = config.getStringList(ConfigEntry.LOBBY_WORLDS.path);
 
         Cache.friendlyFire = config.getBoolean(ConfigEntry.FRIENDLY_FIRE.path);
+        Cache.peaceperiod = config.getInt(ConfigEntry.PEACE_PERIOD.path);
 
         Cache.teamsItem = new ItemStack(Material.NETHER_STAR);
         ItemMeta im = Cache.teamsItem.getItemMeta();
