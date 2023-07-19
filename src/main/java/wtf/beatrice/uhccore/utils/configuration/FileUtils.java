@@ -88,7 +88,7 @@ public class FileUtils
 
         Cache.quitTeamItem = new ItemStack(Material.BARRIER);
         im = Cache.quitTeamItem.getItemMeta();
-        im.setDisplayName("§cEsci dal Team");
+        im.setDisplayName("§cLeave the team");
         Cache.quitTeamItem.setItemMeta(im);
 
         Cache.totalTeams = config.getInt(ConfigEntry.TEAMS_NUMBER.path);

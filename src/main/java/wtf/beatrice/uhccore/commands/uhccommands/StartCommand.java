@@ -36,7 +36,7 @@ public class StartCommand {
         for(String playerName : Cache.playerTeam.keySet())
         {
             Player player = plugin.getServer().getPlayer(playerName);
-            player.sendTitle("La §dUHC§r inizierà a breve!", "ricerca degli spawnpoint...", 20, 70, 10);
+            player.sendTitle("The §dUHC§r will start shortly!", "Generating spawn points...", 20, 70, 10);
         }
 
 
@@ -90,14 +90,14 @@ public class StartCommand {
                     player.teleport(hisTeamLoc);
                     player.getInventory().clear();
                     player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
-                    player.sendTitle("Caricamento...", "§7attendi un attimo", 20, 70, 10);
+                    player.sendTitle("Loading...", "§7Please wait a moment", 20, 70, 10);
 
 
 
                     plugin.getServer().getScheduler().runTaskLater(plugin, ()->
                     {
                         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
-                        player.sendTitle("La §dUHC§r è iniziata!", "buona fortuna!", 20, 70, 10);
+                        player.sendTitle("The §dUHC§r has begun!", "Good luck!", 20, 70, 10);
                         player.setHealth(20);
                         player.setFoodLevel(22);
                         player.setGameMode(GameMode.SURVIVAL);

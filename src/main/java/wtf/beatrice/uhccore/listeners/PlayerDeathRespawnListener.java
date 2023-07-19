@@ -97,15 +97,15 @@ public class PlayerDeathRespawnListener implements Listener
                     {
                         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                     }
-                    plugin.getServer().broadcastMessage(playerName + "§7 del team §e" + thisPlayerTeamName + "§7 è fuori gioco!");
-                    plugin.getServer().broadcastMessage("§7Nel team " + thisPlayerTeamName + "§7 rimangono §e" + thisPlayerTeamPlayers + "§7 giocatori.");
-                    plugin.getServer().broadcastMessage("§7In totale rimangono §e" + playingPlayers + "§7 giocatori, in §e" + Cache.playingTeams + "§7 team.");
+                    plugin.getServer().broadcastMessage(playerName + "§7 of team §e" + thisPlayerTeamName + "§7 got eliminated!");
+                    plugin.getServer().broadcastMessage("§7In team " + thisPlayerTeamName + "§7 remain §e" + thisPlayerTeamPlayers + "§7 players.");
+                    plugin.getServer().broadcastMessage("§7In total remain §e" + playingPlayers + "§7 players, in §e" + Cache.playingTeams + "§7 teams.");
 
                     if(Cache.playingTeams <= 1)
                     {
                         Cache.allowMovement = false;
                         scheduleTask();
-                        plugin.getServer().broadcastMessage("§6La UHC è finita!");
+                        plugin.getServer().broadcastMessage("§6The UHC is over!");
 
                         int winningTeam = 0;
                         for(int i = 0; i < Cache.totalTeams; i++)
@@ -117,7 +117,7 @@ public class PlayerDeathRespawnListener implements Listener
                         }
 
                         String teamName = Cache.teamNames.get(winningTeam) + "§r";
-                        plugin.getServer().broadcastMessage("§6Ha vinto il team: " + teamName);
+                        plugin.getServer().broadcastMessage("§6The winners are: " + teamName);
 
 
 
@@ -127,7 +127,7 @@ public class PlayerDeathRespawnListener implements Listener
                             // Clear his inventory and give him the Teams selector item.
                             UhcUtils.giveTeamsSelectorItem(currentPlayer);
                             plugin.getLogger().log(Level.INFO,"UHC Finished!");
-                            currentPlayer.sendTitle("Team " + teamName + " Vincitore!", "", 20 * 2, 20 * 10, 20 * 2);
+                            currentPlayer.sendTitle("Team " + teamName + " won!", "", 20 * 2, 20 * 10, 20 * 2);
 
                             for(Player hiddenPlayer : plugin.getServer().getOnlinePlayers())
                             {
@@ -162,7 +162,7 @@ public class PlayerDeathRespawnListener implements Listener
                 if(Cache.playingTeams > 1)
                 {
                     // warn the player that he's not a spectator.
-                    player.sendMessage("§cSei morto nella UHC e ora sei uno spettatore!");
+                    player.sendMessage("§cYou died in the UHC and are now a spectator!");
 
                     // teleport him to his death location.
                     player.teleport(deadPlayers.get(player.getName()));

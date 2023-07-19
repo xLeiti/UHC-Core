@@ -37,7 +37,7 @@ public class PlayerHitListener implements Listener
         {
             // cancel the event.
             event.setCancelled(true);
-            event.getDamager().sendMessage("§cNon puoi colpire un tuo amico!");
+            event.getDamager().sendMessage("§cFriendly fire is disabled");
         }
     }
 }

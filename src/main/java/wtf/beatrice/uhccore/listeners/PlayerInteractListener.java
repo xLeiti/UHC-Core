@@ -78,7 +78,7 @@ public class PlayerInteractListener implements Listener
                 UhcUtils.updatePlayersPerTeam();
 
                 // Tell the player he has joined a team.
-                player.sendMessage("§7Aggiunto al team " + im.getDisplayName());
+                player.sendMessage("§7You joined team " + im.getDisplayName());
             }
             // Else, check if the clicked item is the one used to quit teams.
             else if(item.equals(Cache.quitTeamItem))
@@ -87,14 +87,14 @@ public class PlayerInteractListener implements Listener
                 if(Cache.playerTeam.containsKey(player.getName()))
                 {
                     // Remove the player from the team.
-                    player.sendMessage("§eRimosso dal Team!");
+                    player.sendMessage("§eYou left the team!");
                     Cache.playerTeam.remove(player.getName());
 
                     // Update the total number of players in each team, and the total number of alive teams.
                     UhcUtils.updatePlayersPerTeam();
                 } else
                 {
-                    player.sendMessage("§cIn nessun team!");
+                    player.sendMessage("§cYou're currently in no team!");
                 }
             }
         } // Check if the non-clicked inventory (there always are two inventories) is the Teams selector GUI, and cancel the event (we don't want items to be put inside of it!)
