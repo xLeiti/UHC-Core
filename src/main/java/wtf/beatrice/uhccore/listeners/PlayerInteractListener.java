@@ -1,6 +1,7 @@
 package wtf.beatrice.uhccore.listeners;
 
 
+import org.bukkit.ChatColor;
 import wtf.beatrice.uhccore.utils.Cache;
 import wtf.beatrice.uhccore.utils.UhcUtils;
 import org.bukkit.entity.Player;
@@ -62,6 +63,7 @@ public class PlayerInteractListener implements Listener
             // Load the player and close his inventory.
             Player player = (Player) event.getWhoClicked();
             player.closeInventory();
+            String playername = player.getName();
 
             // Check if the clicked item is an existing Team.
             if(Cache.teamNames.contains(im.getDisplayName()))
@@ -77,6 +79,32 @@ public class PlayerInteractListener implements Listener
                 // Update the total number of players in each team, and the total number of alive teams.
                 UhcUtils.updatePlayersPerTeam();
 
+
+                ChatColor color;
+                switch (teamNumber) {
+                    case 1:  color = ChatColor.BLUE;
+                        break;
+                    case 2:  color = ChatColor.RED;
+                        break;
+                    case 3:  color = ChatColor.GREEN;
+                        break;
+                    case 4:  color = ChatColor.YELLOW;
+                        break;
+                    case 5:  color = ChatColor.DARK_PURPLE;
+                        break;
+                    case 6:  color = ChatColor.GOLD;
+                        break;
+                    case 7:  color = ChatColor.BLACK;
+                        break;
+                    case 8:  color = ChatColor.LIGHT_PURPLE;
+                        break;
+                    default: color = ChatColor.GRAY;
+                        break;
+                }
+
+                player.setPlayerListName(color + playername);
+
+
                 // Tell the player he has joined a team.
                 player.sendMessage("§7You joined team " + im.getDisplayName());
             }
@@ -89,6 +117,7 @@ public class PlayerInteractListener implements Listener
                     // Remove the player from the team.
                     player.sendMessage("§eYou left the team!");
                     Cache.playerTeam.remove(player.getName());
+                    player.setPlayerListName(ChatColor.GRAY + playername);
 
                     // Update the total number of players in each team, and the total number of alive teams.
                     UhcUtils.updatePlayersPerTeam();
