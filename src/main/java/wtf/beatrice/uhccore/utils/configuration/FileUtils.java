@@ -81,6 +81,7 @@ public class FileUtils
 
         Cache.friendlyFire = config.getBoolean(ConfigEntry.FRIENDLY_FIRE.path);
         Cache.peaceperiod = config.getInt(ConfigEntry.PEACE_PERIOD.path);
+        Cache.netherclosetime = config.getInt(ConfigEntry.NETHER_CLOSE.path);
 
         Cache.teamsItem = new ItemStack(Material.NETHER_STAR);
         ItemMeta im = Cache.teamsItem.getItemMeta();

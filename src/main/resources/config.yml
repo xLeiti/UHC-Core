@@ -4,6 +4,7 @@ settings:
   teams: 4
   friendly-fire: false
   peaceperiod: 15
+  netherclosetime: 100
   border:
     center-x: 0
     center-z: 0

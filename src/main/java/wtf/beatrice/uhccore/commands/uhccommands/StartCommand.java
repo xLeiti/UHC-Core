@@ -1,5 +1,6 @@
 package wtf.beatrice.uhccore.commands.uhccommands;
 
+import org.bukkit.scheduler.BukkitTask;
 import wtf.beatrice.uhccore.UhcCore;
 import wtf.beatrice.uhccore.utils.Cache;
 import wtf.beatrice.uhccore.utils.Debugger;
@@ -17,6 +18,7 @@ public class StartCommand {
     private static Debugger debugger = new Debugger(StartCommand.class.getName());
 
     private static int loadDelay = 10;
+
 
     public static void startUhcCommand(CommandSender sender, UhcCore plugin)
     {
@@ -120,6 +122,7 @@ public class StartCommand {
                 spawnWorld.setDifficulty(Difficulty.NORMAL);
                 spawnWorld.getWorldBorder().setCenter(borderCenter);
                 spawnWorld.getWorldBorder().setSize(borderSize);
+                Nether.getWorldBorder().setSize(borderSize);
                 spawnWorld.getWorldBorder().setSize(borderSizeFinal, borderTime*60L);
                 plugin.getLogger().log(Level.INFO,"UHC Started!");
             });
@@ -136,7 +139,33 @@ public class StartCommand {
                 plugin.getServer().broadcastMessage("§6Horizontal border reached it's final state");
             }, Cache.borderTime * 20L * 60L);
 
+            plugin.getServer().getScheduler().runTaskLaterAsynchronously(plugin, ()->
+            {
+                startClosecountdown(plugin, Nether);
+            }, (Cache.netherclosetime-15) * 20L * 60L);
+
+
         });
+    }
+
+    static BukkitTask task;
+    static int count;
+
+    public static void startClosecountdown(UhcCore plugin, World nether) {
+            count = 15; // 15min
+            plugin.getServer().broadcastMessage("§6Nether closes in "+count+" minutes.");
+            task = Bukkit.getScheduler().runTaskTimer(plugin, ()-> {
+            // here what you want
+            if(count == 0) {
+                for (Player p : nether.getPlayers()) {
+                    p.setHealth(0);
+                }
+                Cache.nether_enabled = false;
+                task.cancel(); // cancel the task if the counter is finished
+
+            }
+            count--; // reduce the counter
+        }, 20*60, 20*60);
     }
 
 }

@@ -23,8 +23,13 @@ public class Cache {
     // Peace-period in minutes.
     public static int peaceperiod;
 
+    // Peace-period in minutes.
+    public static int netherclosetime;
+
     // Boolean to know if friendly fire is enabled, and to know if movement is allowed.
     public static boolean friendlyFire, allowMovement = true;
+
+    public static boolean nether_enabled = true;
 
     // ItemStacks to store the "team selector" and "quit team" items + data.
     public static ItemStack teamsItem, quitTeamItem;
