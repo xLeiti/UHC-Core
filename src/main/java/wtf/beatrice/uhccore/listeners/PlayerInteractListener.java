@@ -82,23 +82,23 @@ public class PlayerInteractListener implements Listener
 
                 ChatColor color;
                 switch (teamNumber) {
-                    case 1:  color = ChatColor.BLUE;
+                    case 0:  color = ChatColor.BLUE;
                         break;
-                    case 2:  color = ChatColor.RED;
+                    case 1:  color = ChatColor.RED;
                         break;
-                    case 3:  color = ChatColor.GREEN;
+                    case 2:  color = ChatColor.GREEN;
                         break;
-                    case 4:  color = ChatColor.YELLOW;
+                    case 3:  color = ChatColor.YELLOW;
                         break;
-                    case 5:  color = ChatColor.DARK_PURPLE;
+                    case 4:  color = ChatColor.DARK_PURPLE;
                         break;
-                    case 6:  color = ChatColor.GOLD;
+                    case 5:  color = ChatColor.GOLD;
                         break;
-                    case 7:  color = ChatColor.BLACK;
+                    case 6:  color = ChatColor.BLACK;
                         break;
-                    case 8:  color = ChatColor.LIGHT_PURPLE;
+                    case 7:  color = ChatColor.LIGHT_PURPLE;
                         break;
-                    default: color = ChatColor.GRAY;
+                    default: color = ChatColor.WHITE;
                         break;
                 }
 
@@ -117,7 +117,7 @@ public class PlayerInteractListener implements Listener
                     // Remove the player from the team.
                     player.sendMessage("§eYou left the team!");
                     Cache.playerTeam.remove(player.getName());
-                    player.setPlayerListName(ChatColor.GRAY + playername);
+                    player.setPlayerListName(ChatColor.WHITE + playername);
 
                     // Update the total number of players in each team, and the total number of alive teams.
                     UhcUtils.updatePlayersPerTeam();

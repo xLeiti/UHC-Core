@@ -55,8 +55,8 @@ public class StartCommand {
             for(int i = 0; i < Cache.totalTeams; i++)
             {
 
-                double x = NumberUtils.getRandomNumberInRange(borderX - range + 1, borderX + range - 1) + 0.5;
-                double z = NumberUtils.getRandomNumberInRange(borderZ - range + 1, borderZ + range - 1) + 0.5;
+                double x = NumberUtils.getRandomNumberInRange(borderX - range + 5, borderX + range - 5) + 0.5;
+                double z = NumberUtils.getRandomNumberInRange(borderZ - range + 5, borderZ + range - 5) + 0.5;
                 int y = spawnWorld.getHighestBlockYAt((int) x, (int) z); // todo: this method is shit, use the one i already implemented in Factions...
 
                 Location loc = new Location(spawnWorld, x, y + 1, z);
