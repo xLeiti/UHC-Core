@@ -103,6 +103,7 @@ public class PlayerInteractListener implements Listener
                 }
 
                 player.setPlayerListName(color + playername);
+                player.setDisplayName(color + playername);
 
 
                 // Tell the player he has joined a team.
@@ -118,7 +119,7 @@ public class PlayerInteractListener implements Listener
                     player.sendMessage("§eYou left the team!");
                     Cache.playerTeam.remove(player.getName());
                     player.setPlayerListName(ChatColor.WHITE + playername);
-
+                    player.setDisplayName(ChatColor.WHITE + playername);
                     // Update the total number of players in each team, and the total number of alive teams.
                     UhcUtils.updatePlayersPerTeam();
                 } else
