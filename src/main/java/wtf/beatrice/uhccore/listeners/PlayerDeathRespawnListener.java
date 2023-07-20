@@ -1,6 +1,9 @@
 package wtf.beatrice.uhccore.listeners;
 
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.RenderType;
 import wtf.beatrice.uhccore.UhcCore;
 import wtf.beatrice.uhccore.utils.Cache;
 import wtf.beatrice.uhccore.utils.Debugger;
@@ -81,6 +84,10 @@ public class PlayerDeathRespawnListener implements Listener
             String thisPlayerTeamName = Cache.teamNames.get(thisPlayerTeamNumber);
             // Remove the player from his team.
             Cache.playerTeam.remove(playerName);
+
+
+            org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
+            board.clearSlot(DisplaySlot.PLAYER_LIST);
 
 
             // Run this task Async, because it may be CPU heavy.
