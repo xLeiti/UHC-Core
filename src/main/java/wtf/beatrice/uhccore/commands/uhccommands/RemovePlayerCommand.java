@@ -21,9 +21,9 @@ public class RemovePlayerCommand {
 
             if (Cache.playerTeam.containsKey(name)) {
 
-                // Load the dead player's team number.
+                // Load the to be removed player's team number.
                 int thisPlayerTeamNumber = Cache.playerTeam.get(name);
-                // Load the death player's team name.
+                // Load the to be removed player's team name.
                 String thisPlayerTeamName = Cache.teamNames.get(thisPlayerTeamNumber);
                 //remove player from the team
                 Cache.playerTeam.remove(name);
@@ -35,7 +35,7 @@ public class RemovePlayerCommand {
                     // Update the total number of players in each team, and the total number of alive teams.
                     UhcUtils.updatePlayersPerTeam();
 
-                    // Check how many players are left in the dead player's team.
+                    // Check how many players are left in the to removed player's team.
                     int thisPlayerTeamPlayers = Cache.playersPerTeam.get(thisPlayerTeamNumber);
 
                     // Run this task Sync, because we need to access the API, and also delay it by 1 second.
