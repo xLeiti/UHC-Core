@@ -1,18 +1,12 @@
 package wtf.beatrice.uhccore.commands.uhccommands;
 
-import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import wtf.beatrice.uhccore.UhcCore;
-import wtf.beatrice.uhccore.listeners.PlayerDeathRespawnListener;
 import wtf.beatrice.uhccore.utils.Cache;
-import wtf.beatrice.uhccore.utils.MessageUtils;
 import wtf.beatrice.uhccore.utils.UhcUtils;
-import wtf.beatrice.uhccore.utils.configuration.ConfigEntry;
-import wtf.beatrice.uhccore.utils.configuration.FileUtils;
-import wtf.beatrice.uhccore.utils.configuration.LocalizedMessage;
+
 
 import java.util.logging.Level;
 
