@@ -18,7 +18,7 @@ public class EnterNetherListenener implements Listener
     public EnterNetherListenener(UhcCore givenPlugin) {plugin = givenPlugin;}
     private Debugger debugger = new Debugger(getClass().getName());
 
-    // Call EventHandler and start listening to joining players.
+    // Call EventHandler and start listening to Players using a portal.
     @EventHandler
     public void onPlayerUsingPortal(PlayerPortalEvent e)
     {

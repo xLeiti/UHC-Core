@@ -122,6 +122,8 @@ public class StartCommand {
                 spawnWorld.setDifficulty(Difficulty.NORMAL);
                 spawnWorld.getWorldBorder().setCenter(borderCenter);
                 spawnWorld.getWorldBorder().setSize(borderSize);
+                spawnWorld.getWorldBorder().setDamageBuffer(0.3);
+                spawnWorld.getWorldBorder().setDamageAmount(1);
                 Nether.getWorldBorder().setSize(borderSize);
                 spawnWorld.getWorldBorder().setSize(borderSizeFinal, borderTime*60L);
                 plugin.getLogger().log(Level.INFO,"UHC Started!");
