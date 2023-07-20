@@ -1,6 +1,9 @@
 package wtf.beatrice.uhccore.commands.uhccommands;
 
 import org.bukkit.scheduler.BukkitTask;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.RenderType;
 import wtf.beatrice.uhccore.UhcCore;
 import wtf.beatrice.uhccore.utils.Cache;
 import wtf.beatrice.uhccore.utils.Debugger;
@@ -93,7 +96,14 @@ public class StartCommand {
                 Player player = plugin.getServer().getPlayer(playerName);
                 Location hisTeamLoc = spawnPerTeam.get(teamNumber);
 
-
+                //Display Playerhearts
+                org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
+                Objective objective = board.getObjective("showhealth");
+                if (objective == null) {
+                    String dName = ChatColor.RED + "\u2665";
+                    objective = board.registerNewObjective("showhealth", "health", dName, RenderType.HEARTS);
+                    objective.setDisplaySlot(DisplaySlot.PLAYER_LIST);
+                }
 
                 plugin.getServer().getScheduler().runTask(plugin, () ->
                 {

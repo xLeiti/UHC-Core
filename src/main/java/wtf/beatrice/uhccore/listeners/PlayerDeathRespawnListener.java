@@ -85,7 +85,7 @@ public class PlayerDeathRespawnListener implements Listener
             // Remove the player from his team.
             Cache.playerTeam.remove(playerName);
 
-
+            //Remove playerhearts display
             org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
             board.clearSlot(DisplaySlot.PLAYER_LIST);
 
