@@ -1,5 +1,6 @@
 package wtf.beatrice.uhccore.commands;
 
+import org.bukkit.Bukkit;
 import wtf.beatrice.uhccore.UhcCore;
 import wtf.beatrice.uhccore.utils.Debugger;
 import wtf.beatrice.uhccore.utils.MessageUtils;
@@ -59,7 +60,12 @@ public class UhcCoreCommand implements CommandExecutor
             }
             else if(args[0].equalsIgnoreCase("reload"))
             {
-                ReloadCommand.reloadCommand(commandSender);
+                if(commandSender instanceof Player && ((Player)commandSender).isOp()){
+                    ReloadCommand.reloadCommand(commandSender);
+                }else{
+                    commandSender.sendMessage("Sorry you need to be Admin to use this command");
+                }
+
             }
             else if(args[0].equalsIgnoreCase("setspawn"))
             {
@@ -67,10 +73,12 @@ public class UhcCoreCommand implements CommandExecutor
                 {
                     MessageUtils.sendLocalizedMessage(commandSender.getName(), LocalizedMessage.ERROR_CONSOLE_ACCESS_BLOCKED);
                 }
-                else
-                {
+                else if(((Player)commandSender).isOp()){
                     SetSpawnCommand.setSpawn(commandSender);
+                }else{
+                    commandSender.sendMessage("Sorry you need to be Admin to use this command");
                 }
+
             }
             else if(args[0].equalsIgnoreCase("setfirework"))
             {
@@ -89,10 +97,22 @@ public class UhcCoreCommand implements CommandExecutor
             }
             else if(args[0].equalsIgnoreCase("start"))
             {
-                StartCommand.startUhcCommand(commandSender, plugin);
+                if(commandSender instanceof Player && ((Player)commandSender).isOp()){
+                    StartCommand.startUhcCommand(commandSender, plugin);
+                }else{
+                    commandSender.sendMessage("Sorry you need to be Admin to use this command");
+                }
             }
 
-            // TODO: PERMISSIONS! CONFIG!
+        } else if (args.length == 2) {
+            if(args[0].equalsIgnoreCase("removeplayer"))
+            {
+                if(commandSender instanceof Player && ((Player)commandSender).isOp()){
+                    RemovePlayerCommand.removePlayer(commandSender, args, plugin);
+                }else{
+                    commandSender.sendMessage("Sorry you need to be Admin to use this command");
+                }
+            }
         }
         return true;
     }

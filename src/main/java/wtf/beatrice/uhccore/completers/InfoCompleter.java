@@ -20,6 +20,7 @@ public class InfoCompleter implements TabCompleter {
             list.add("start");
             list.add("reload");
             list.add("list");
+            list.add("removeplayer");
             if(args[0].startsWith("h"))
             {
                 list.clear();

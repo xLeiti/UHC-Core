@@ -4,12 +4,10 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
 import wtf.beatrice.uhccore.UhcCore;
 import wtf.beatrice.uhccore.utils.Cache;
 import wtf.beatrice.uhccore.utils.Debugger;
-import wtf.beatrice.uhccore.utils.UhcUtils;
 
 public class EnterNetherListenener implements Listener
 {
