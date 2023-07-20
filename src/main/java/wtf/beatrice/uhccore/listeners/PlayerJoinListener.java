@@ -1,5 +1,9 @@
 package wtf.beatrice.uhccore.listeners;
 
+import org.bukkit.ChatColor;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.RenderType;
 import wtf.beatrice.uhccore.utils.Cache;
 import wtf.beatrice.uhccore.utils.Debugger;
 import wtf.beatrice.uhccore.utils.UhcUtils;
@@ -28,6 +32,12 @@ public class PlayerJoinListener implements Listener
             UhcUtils.tpSpawnAndGiveItem(player);
         }
 
-
+        org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
+        Objective objective = board.getObjective("showhealth");
+        if (objective == null) {
+            String dName = ChatColor.RED + "\u2665";
+            objective = board.registerNewObjective("showhealth", "health", dName, RenderType.HEARTS);
+            objective.setDisplaySlot(DisplaySlot.PLAYER_LIST);
+        }
     }
 }

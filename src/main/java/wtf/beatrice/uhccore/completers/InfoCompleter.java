@@ -20,7 +20,7 @@ public class InfoCompleter implements TabCompleter {
             list.add("start");
             list.add("reload");
             list.add("list");
-            list.add("removeplayer");
+            list.add("removeplayer <playername>");
             if(args[0].startsWith("h"))
             {
                 list.clear();
@@ -38,6 +38,7 @@ public class InfoCompleter implements TabCompleter {
             {
                 list.clear();
                 list.add("reload");
+                list.add("removeplayer <playername>");
             } else
             if(args[0].equalsIgnoreCase("list"))
             {

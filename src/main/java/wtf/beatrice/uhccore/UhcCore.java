@@ -30,7 +30,6 @@ public class UhcCore extends JavaPlugin
     @Override
     public void onEnable()
     {
-        instance = this;
 
         // We need to run this in a task, because the plugin has to be initialized AFTER all the worlds are loaded.
         // todo: after a few months, this sounds like a badly implemented idea
