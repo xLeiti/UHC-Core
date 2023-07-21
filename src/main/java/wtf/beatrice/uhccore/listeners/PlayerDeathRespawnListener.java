@@ -118,6 +118,7 @@ public class PlayerDeathRespawnListener implements Listener
                     if(Cache.playingTeams <= 1)
                     {
                         Cache.allowMovement = false;
+                        Cache.game_running = false;
                         scheduleTask();
                         plugin.getServer().broadcastMessage("§6The UHC is over!");
 
@@ -137,7 +138,7 @@ public class PlayerDeathRespawnListener implements Listener
 
                         for(Player currentPlayer : plugin.getServer().getOnlinePlayers())
                         {
-                            currentPlayer.teleport(Cache.spawn);
+
                             // Clear his inventory and give him the Teams selector item.
                             UhcUtils.giveTeamsSelectorItem(currentPlayer);
                             plugin.getLogger().log(Level.INFO,"UHC Finished!");
@@ -170,7 +171,7 @@ public class PlayerDeathRespawnListener implements Listener
             plugin.getServer().getScheduler().runTaskLater(plugin, () ->
             {
 
-
+                player.teleport(Cache.spawn);
                 // Check if there is more than 1 team alive.
                 // If there is only 1 team alive, then the UHC is over.
                 if(Cache.playingTeams > 1)
@@ -183,7 +184,7 @@ public class PlayerDeathRespawnListener implements Listener
 
                     // wait 0,5s and set his gamemode to spectator.
                     plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
-                        player.setGameMode(GameMode.SPECTATOR);
+                        //player.setGameMode(GameMode.SPECTATOR);
                     }, 10L);
                 }
                 else
@@ -196,7 +197,7 @@ public class PlayerDeathRespawnListener implements Listener
 
                 deadPlayers.remove(player.getName());
 
-            }, 20L);
+            }, 1L);
         }
         else
         {

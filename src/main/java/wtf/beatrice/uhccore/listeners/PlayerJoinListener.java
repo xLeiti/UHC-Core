@@ -75,8 +75,9 @@ public class PlayerJoinListener implements Listener
         }
 
         if(Cache.game_running){
-
-            if(!Cache.nether_enabled&&player.getWorld().getName()==Cache.uhcWorlds.get(1)){
+            player.sendMessage(String.valueOf(Cache.nether_enabled));
+            if((!Cache.nether_enabled)&&(player.getWorld().getName()==Cache.uhcWorlds.get(1))){
+                player.sendMessage("wtf");
                 player.setHealth(0);
             }
         }

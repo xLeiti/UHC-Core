@@ -1,6 +1,7 @@
 package wtf.beatrice.uhccore;
 
 import wtf.beatrice.uhccore.commands.UhcCoreCommand;
+import wtf.beatrice.uhccore.commands.uhccommands.GlobalChat;
 import wtf.beatrice.uhccore.completers.InfoCompleter;
 import wtf.beatrice.uhccore.listeners.*;
 import wtf.beatrice.uhccore.utils.Debugger;
@@ -50,6 +51,7 @@ public class UhcCore extends JavaPlugin
             debugger.sendDebugMessage(Level.INFO, "Instantiating some classes that need to access to plugin data...");
             FileUtils fileUtilsInstance = new FileUtils(this);
             UhcCoreCommand uhcCoreCommandInstance = new UhcCoreCommand(this);
+            getCommand("g").setExecutor(new GlobalChat(this));
             MessageUtils messageUtilsInstance = new MessageUtils(this);
             PlayerChatListener playerChatListenerInstance = new PlayerChatListener(this);
             EnterNetherListenener enterNetherListenener = new EnterNetherListenener(this);

@@ -2,6 +2,7 @@ package wtf.beatrice.uhccore.commands;
 
 import org.bukkit.Bukkit;
 import wtf.beatrice.uhccore.UhcCore;
+import wtf.beatrice.uhccore.utils.Cache;
 import wtf.beatrice.uhccore.utils.Debugger;
 import wtf.beatrice.uhccore.utils.MessageUtils;
 import wtf.beatrice.uhccore.utils.configuration.LocalizedMessage;
