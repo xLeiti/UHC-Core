@@ -9,6 +9,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 public class PlayerHitListener implements Listener
 {
 
+
+
     // Event called when someone hits someone else.
     @EventHandler
     public void onPlayerHitPlayer(EntityDamageByEntityEvent event)

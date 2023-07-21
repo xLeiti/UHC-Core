@@ -108,10 +108,16 @@ public class StartCommand {
                 if (objective == null) {
                     String dName = ChatColor.RED + "\u2665";
                     objective = board.registerNewObjective("showhealth", "health", dName, RenderType.HEARTS);
-                    objective.setDisplaySlot(DisplaySlot.PLAYER_LIST);
                 }
+                objective.setDisplaySlot(DisplaySlot.PLAYER_LIST);
                 player.setHealth(10);
-                player.setHealth(20);
+                plugin.getServer().getScheduler().runTaskLater(plugin, ()->
+                {
+                    player.setHealth(20);
+                }, 20L);
+
+
+
 
                 plugin.getServer().getScheduler().runTask(plugin, () ->
                 {

@@ -85,10 +85,6 @@ public class PlayerDeathRespawnListener implements Listener
             // Remove the player from his team.
             Cache.playerTeam.remove(playerName);
 
-            //Remove playerhearts display
-            org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
-            board.clearSlot(DisplaySlot.PLAYER_LIST);
-
             player.teleport(Cache.spawn);
 
 
@@ -122,6 +118,10 @@ public class PlayerDeathRespawnListener implements Listener
                         scheduleTask();
                         plugin.getServer().broadcastMessage("§6The UHC is over!");
 
+                        //Remove playerhearts display
+                        org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
+                        board.clearSlot(DisplaySlot.PLAYER_LIST);
+
                         int winningTeam = 0;
                         for(int i = 0; i < Cache.totalTeams; i++)
                         {
@@ -138,7 +138,7 @@ public class PlayerDeathRespawnListener implements Listener
 
                         for(Player currentPlayer : plugin.getServer().getOnlinePlayers())
                         {
-
+                            currentPlayer.teleport(Cache.spawn);
                             // Clear his inventory and give him the Teams selector item.
                             UhcUtils.giveTeamsSelectorItem(currentPlayer);
                             plugin.getLogger().log(Level.INFO,"UHC Finished!");

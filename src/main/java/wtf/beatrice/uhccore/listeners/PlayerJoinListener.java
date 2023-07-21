@@ -29,6 +29,8 @@ public class PlayerJoinListener implements Listener
 
         if(!(Cache.playerTeam.containsKey(player.getName())))
         {
+            org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
+            board.clearSlot(DisplaySlot.PLAYER_LIST);
             UhcUtils.tpSpawnAndGiveItem(player);
         }else{
 
