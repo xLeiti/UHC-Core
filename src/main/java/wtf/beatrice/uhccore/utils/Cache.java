@@ -29,7 +29,12 @@ public class Cache {
     // Boolean to know if friendly fire is enabled, and to know if movement is allowed.
     public static boolean friendlyFire, allowMovement = true;
 
+    //Boolean to toggle Netherportals
     public static boolean nether_enabled = true;
+
+    //Boolean to quickly check if a game is running
+
+    public static boolean game_running = false;
 
     // ItemStacks to store the "team selector" and "quit team" items + data.
     public static ItemStack teamsItem, quitTeamItem;

@@ -1,5 +1,7 @@
 package wtf.beatrice.uhccore.commands.uhccommands;
 
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
@@ -21,7 +23,7 @@ public class StartCommand {
     private static Debugger debugger = new Debugger(StartCommand.class.getName());
 
     private static int loadDelay = 10;
-
+    static int count = 15;
 
     public static void startUhcCommand(CommandSender sender, UhcCore plugin)
     {
@@ -34,6 +36,7 @@ public class StartCommand {
         spawnWorld.setPVP(false);
         Nether.setPVP(false);
 
+        Cache.game_running = true;
 
         int borderX = Cache.borderX;
         int borderZ = Cache.borderZ;
@@ -97,6 +100,9 @@ public class StartCommand {
                 Location hisTeamLoc = spawnPerTeam.get(teamNumber);
 
                 //Display Playerhearts
+
+
+                //player.addPotionEffect((new PotionEffect(PotionEffectType.ABSORPTION, 200, 10)));
                 org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
                 Objective objective = board.getObjective("showhealth");
                 if (objective == null) {
@@ -104,6 +110,8 @@ public class StartCommand {
                     objective = board.registerNewObjective("showhealth", "health", dName, RenderType.HEARTS);
                     objective.setDisplaySlot(DisplaySlot.PLAYER_LIST);
                 }
+                player.setHealth(10);
+                player.setHealth(20);
 
                 plugin.getServer().getScheduler().runTask(plugin, () ->
                 {
@@ -129,6 +137,7 @@ public class StartCommand {
             {
                 spawnWorld.setTime(0L);
                 spawnWorld.setGameRule(GameRule.NATURAL_REGENERATION, false);
+                Nether.setGameRule(GameRule.NATURAL_REGENERATION, false);
                 spawnWorld.setDifficulty(Difficulty.NORMAL);
                 spawnWorld.getWorldBorder().setCenter(borderCenter);
                 spawnWorld.getWorldBorder().setSize(borderSize);
@@ -157,27 +166,37 @@ public class StartCommand {
             }, (Cache.netherclosetime-15) * 20L * 60L);
 
 
+
+
         });
     }
 
-    static BukkitTask task;
-    static int count;
 
     public static void startClosecountdown(UhcCore plugin, World nether) {
-            count = 15; // 15min
-            plugin.getServer().broadcastMessage("§6Nether closes in "+count+" minutes.");
-            task = Bukkit.getScheduler().runTaskTimer(plugin, ()-> {
-            // here what you want
-            if(count == 0) {
+
+
+            if(count>0){
+                plugin.getServer().broadcastMessage("§6§lNether closes in "+count+" minutes!!!");
+
+                plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, ()->
+                {
+
+                    count--; // reduce the counter
+                    startClosecountdown(plugin, nether);
+
+                }, 60L * 20L);
+
+            }else{
+                plugin.getServer().broadcastMessage("§6Nether closed.");
+                Cache.nether_enabled = false;
                 for (Player p : nether.getPlayers()) {
                     p.setHealth(0);
                 }
-                Cache.nether_enabled = false;
-                task.cancel(); // cancel the task if the counter is finished
-
             }
-            count--; // reduce the counter
-        }, 20*60, 20*60);
+
+
+
+
     }
 
 }

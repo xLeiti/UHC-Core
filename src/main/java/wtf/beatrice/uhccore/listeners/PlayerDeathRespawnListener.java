@@ -89,6 +89,8 @@ public class PlayerDeathRespawnListener implements Listener
             org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
             board.clearSlot(DisplaySlot.PLAYER_LIST);
 
+            player.teleport(Cache.spawn);
+
 
             // Run this task Async, because it may be CPU heavy.
             plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () ->
@@ -177,7 +179,7 @@ public class PlayerDeathRespawnListener implements Listener
                     player.sendMessage("§cYou died in the UHC and are now a spectator!");
 
                     // teleport him to his death location.
-                    player.teleport(deadPlayers.get(player.getName()));
+                    //player.teleport(deadPlayers.get(player.getName()));
 
                     // wait 0,5s and set his gamemode to spectator.
                     plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
@@ -234,9 +236,9 @@ public class PlayerDeathRespawnListener implements Listener
             }
 
             for(Location loc : Cache.fireworksLocations)
-                {
-                    debugger.sendDebugMessage(Level.INFO, "FIREWORK LOC: " + loc);
-                    UhcUtils.spawnFirework(loc, 10L);
+            {
+                debugger.sendDebugMessage(Level.INFO, "FIREWORK LOC: " + loc);
+                UhcUtils.spawnFirework(loc, 10L);
             }
 
 

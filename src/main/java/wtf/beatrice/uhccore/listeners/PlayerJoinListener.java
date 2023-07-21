@@ -30,7 +30,57 @@ public class PlayerJoinListener implements Listener
         if(!(Cache.playerTeam.containsKey(player.getName())))
         {
             UhcUtils.tpSpawnAndGiveItem(player);
+        }else{
+
+
+
+            int teamNumber = Cache.playerTeam.get(player.getName());
+
+
+
+            // Load the team number from the team name in the teams list.
+            //int teamNumber = Cache.teamNames.indexOf(player.getName());
+            player.sendMessage("§cYou're in team"+teamNumber);
+            // Add the player to that team.
+            Cache.playerTeam.remove(player.getName());
+            Cache.playerTeam.put(player.getName(), teamNumber);
+
+            // Update the total number of players in each team, and the total number of alive teams.
+            UhcUtils.updatePlayersPerTeam();
+
+
+            ChatColor color;
+            switch (teamNumber) {
+                case 0:  color = ChatColor.BLUE;
+                    break;
+                case 1:  color = ChatColor.RED;
+                    break;
+                case 2:  color = ChatColor.GREEN;
+                    break;
+                case 3:  color = ChatColor.YELLOW;
+                    break;
+                case 4:  color = ChatColor.DARK_PURPLE;
+                    break;
+                case 5:  color = ChatColor.GOLD;
+                    break;
+                case 6:  color = ChatColor.BLACK;
+                    break;
+                case 7:  color = ChatColor.LIGHT_PURPLE;
+                    break;
+                default: color = ChatColor.WHITE;
+                    break;
+            }
+
+            player.setPlayerListName(color + player.getName());
         }
+
+        if(Cache.game_running){
+
+            if(!Cache.nether_enabled&&player.getWorld().getName()==Cache.uhcWorlds.get(1)){
+                player.setHealth(0);
+            }
+        }
+
 
     }
 }
