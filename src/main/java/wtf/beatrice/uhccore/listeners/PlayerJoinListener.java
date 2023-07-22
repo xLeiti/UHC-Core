@@ -42,7 +42,6 @@ public class PlayerJoinListener implements Listener
 
             // Load the team number from the team name in the teams list.
             //int teamNumber = Cache.teamNames.indexOf(player.getName());
-            player.sendMessage("§cYou're in team"+teamNumber);
             // Add the player to that team.
             Cache.playerTeam.remove(player.getName());
             Cache.playerTeam.put(player.getName(), teamNumber);
@@ -77,11 +76,12 @@ public class PlayerJoinListener implements Listener
         }
 
         if(Cache.game_running){
-            player.sendMessage(String.valueOf(Cache.nether_enabled));
-            if((!Cache.nether_enabled)&&(player.getWorld().getName()==Cache.uhcWorlds.get(1))){
-                player.sendMessage("wtf");
+            if((!Cache.nether_enabled)&&player.getWorld().getName().equals(Cache.uhcWorlds.get(1)))
+            {
                 player.setHealth(0);
             }
+
+
         }
 
 

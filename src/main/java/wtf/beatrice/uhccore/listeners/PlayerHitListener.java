@@ -35,7 +35,7 @@ public class PlayerHitListener implements Listener
         }
 
         // check if they're both in the same team.
-        if(Cache.playerTeam.get(damagedName).equals(Cache.playerTeam.get(damagerName)))
+        if((Cache.playerTeam.get(damagedName).equals(Cache.playerTeam.get(damagerName)))&&damagerName!=damagerName)
         {
             // cancel the event.
             event.setCancelled(true);

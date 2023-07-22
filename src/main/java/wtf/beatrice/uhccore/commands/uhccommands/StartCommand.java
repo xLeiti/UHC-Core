@@ -190,10 +190,10 @@ public class StartCommand {
                     count--; // reduce the counter
                     startClosecountdown(plugin, nether);
 
-                },   20L);
+                },   60L*20L);
 
             }else{
-                plugin.getServer().broadcastMessage("§6Nether closed.");
+                plugin.getServer().broadcastMessage("§4§lNether closed.");
                 Cache.nether_enabled = false;
                 for (Player p : nether.getPlayers()) {
                     p.setHealth(0);
