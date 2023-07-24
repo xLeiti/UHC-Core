@@ -22,7 +22,7 @@ public class StartCommand {
 
     private static Debugger debugger = new Debugger(StartCommand.class.getName());
 
-    private static int loadDelay = 10;
+    private static int loadDelay = 5;
     static int count = 15;
 
     public static void startUhcCommand(CommandSender sender, UhcCore plugin)
@@ -121,6 +121,7 @@ public class StartCommand {
 
                 plugin.getServer().getScheduler().runTask(plugin, () ->
                 {
+                    player.setInvulnerable(true);
                     player.teleport(hisTeamLoc);
                     player.getInventory().clear();
                     player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
@@ -136,6 +137,13 @@ public class StartCommand {
                         player.setFoodLevel(22);
                         player.setGameMode(GameMode.SURVIVAL);
                     }, loadDelay * 20L);
+
+                    plugin.getServer().getScheduler().runTaskLater(plugin, ()->
+                    {
+                        player.setInvulnerable(false);
+                        player.sendMessage("§7Damage is enabled!");
+                    }, loadDelay * 20L);
+
                 });
             }
 
@@ -160,6 +168,7 @@ public class StartCommand {
                 Nether.setPVP(true);
                 plugin.getServer().broadcastMessage("§6PVP enabled!");
             }, Cache.peaceperiod * 20L * 60L);
+
 
             plugin.getServer().getScheduler().runTaskLaterAsynchronously(plugin, ()->
             {
