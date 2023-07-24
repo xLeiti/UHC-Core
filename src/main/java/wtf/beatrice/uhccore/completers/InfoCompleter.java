@@ -39,6 +39,7 @@ public class InfoCompleter implements TabCompleter {
                 list.clear();
                 list.add("reload");
                 list.add("removeplayer <playername>");
+                list.add("reviveplayer <playername> <teamname>");
             } else
             if(args[0].equalsIgnoreCase("list"))
             {

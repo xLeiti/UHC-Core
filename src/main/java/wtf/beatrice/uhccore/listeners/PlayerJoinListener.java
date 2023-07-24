@@ -38,12 +38,6 @@ public class PlayerJoinListener implements Listener
 
             int teamNumber = Cache.playerTeam.get(player.getName());
 
-
-
-            // Load the team number from the team name in the teams list.
-            //int teamNumber = Cache.teamNames.indexOf(player.getName());
-            // Add the player to that team.
-            Cache.playerTeam.remove(player.getName());
             Cache.playerTeam.put(player.getName(), teamNumber);
 
             // Update the total number of players in each team, and the total number of alive teams.

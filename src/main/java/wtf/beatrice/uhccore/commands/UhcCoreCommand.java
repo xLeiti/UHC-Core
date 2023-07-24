@@ -115,6 +115,16 @@ public class UhcCoreCommand implements CommandExecutor
                 }
             }
         }
+        else if (args.length == 3) {
+            if(args[0].equalsIgnoreCase("reviveplayer"))
+            {
+                if(commandSender instanceof Player && ((Player)commandSender).isOp()){
+                    RevivePlayerCommand.revivePlayer(commandSender, args, plugin);
+                }else{
+                    commandSender.sendMessage("Sorry you need to be Admin to use this command");
+                }
+            }
+        }
         return true;
     }
 }
