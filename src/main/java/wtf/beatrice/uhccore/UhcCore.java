@@ -55,6 +55,7 @@ public class UhcCore extends JavaPlugin
             MessageUtils messageUtilsInstance = new MessageUtils(this);
             PlayerChatListener playerChatListenerInstance = new PlayerChatListener(this);
             EnterNetherListenener enterNetherListenener = new EnterNetherListenener(this);
+            BlockBreakListener blockBreakListener = new BlockBreakListener(this);
             PlayerDeathRespawnListener playerDeathRespawnListenerInstance = new PlayerDeathRespawnListener(this);
             PlayerMoveListener playerMoveListenerInstance = new PlayerMoveListener(this);
             debugger.sendDebugMessage(Level.INFO, "Done instantiating classes!");
@@ -81,6 +82,7 @@ public class UhcCore extends JavaPlugin
             pluginManager.registerEvents(playerChatListenerInstance, this);
             pluginManager.registerEvents(new PlayerHitListener(), this);
             pluginManager.registerEvents(enterNetherListenener, this);
+            pluginManager.registerEvents(blockBreakListener, this);
             pluginManager.registerEvents(playerMoveListenerInstance, this);
             debugger.sendDebugMessage(Level.INFO, "Done registering listeners!");
 

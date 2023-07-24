@@ -6,12 +6,19 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.inventory.ItemStack;
+import wtf.beatrice.uhccore.UhcCore;
 
 import java.util.Random;
 
 
 public class BlockBreakListener implements Listener {
 
+
+    private UhcCore plugin;
+
+    public BlockBreakListener(UhcCore givenPlugin) {plugin = givenPlugin;}
+    
+    //Oak and dark_oak already drop apples
     Material[] leaves = new Material[]{Material.SPRUCE_LEAVES, Material.ACACIA_LEAVES, Material.AZALEA_LEAVES, Material.BIRCH_LEAVES, Material.CHERRY_LEAVES, Material.FLOWERING_AZALEA_LEAVES, Material.JUNGLE_LEAVES, Material.MANGROVE_LEAVES};
 
     @EventHandler
