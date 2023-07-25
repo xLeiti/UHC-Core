@@ -7,6 +7,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.inventory.ItemStack;
 import wtf.beatrice.uhccore.UhcCore;
+import wtf.beatrice.uhccore.utils.math.NumberUtils;
 
 import java.util.Random;
 
@@ -39,13 +40,11 @@ public class BlockBreakListener implements Listener {
         for(Material m : leaves) {
             if (block.getType().equals(m)) {
                 //0.5%
-                int random = rand.nextInt(200+1);
+                int random = NumberUtils.getRandomNumberInRange(0, 200);
                 if (random > 1) {
                     return;
                 }
                 block.getWorld().dropItemNaturally(block.getLocation().add(.5, .5, .5), new ItemStack(Material.APPLE));
-            } else {
-                return;
             }
         }
     }

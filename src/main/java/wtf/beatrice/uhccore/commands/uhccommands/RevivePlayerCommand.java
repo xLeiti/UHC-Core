@@ -21,7 +21,7 @@ public class RevivePlayerCommand {
         int teamNumber = -1;
 
         try{
-            teamNumber = Integer.valueOf(args[2]);
+            teamNumber = Integer.valueOf(args[2])-1;
         } catch (NumberFormatException e){
             sender.sendMessage("Please enter a number as team ID");
             return;
