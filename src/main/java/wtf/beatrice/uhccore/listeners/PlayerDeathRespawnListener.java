@@ -238,7 +238,7 @@ public class PlayerDeathRespawnListener implements Listener
             for(Location loc : Cache.fireworksLocations)
             {
                 debugger.sendDebugMessage(Level.INFO, "FIREWORK LOC: " + loc);
-                UhcUtils.spawnFirework(loc, 10L);
+                UhcUtils.spawnFirework(loc, 20L);
             }
 
 
