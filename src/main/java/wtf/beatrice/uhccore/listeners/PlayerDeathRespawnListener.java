@@ -119,8 +119,7 @@ public class PlayerDeathRespawnListener implements Listener
                         plugin.getServer().broadcastMessage("§6The UHC is over!");
 
                         //Remove playerhearts display
-                        org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
-                        board.clearSlot(DisplaySlot.PLAYER_LIST);
+                        UhcUtils.removeHeartsDisplay(player);
 
                         int winningTeam = 0;
                         for(int i = 0; i < Cache.totalTeams; i++)

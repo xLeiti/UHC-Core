@@ -1,5 +1,9 @@
 package wtf.beatrice.uhccore.utils;
 
+import org.bukkit.ChatColor;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.RenderType;
 import wtf.beatrice.uhccore.UhcCore;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
@@ -54,6 +58,34 @@ public class UhcUtils {
         player.getInventory().setItem(4, Cache.teamsItem);
     }
 
+    public static void setTabColor(Player player, Integer teamNumber)
+    {
+
+        ChatColor color;
+        switch (teamNumber) {
+            case 0:  color = ChatColor.BLUE;
+                break;
+            case 1:  color = ChatColor.RED;
+                break;
+            case 2:  color = ChatColor.GREEN;
+                break;
+            case 3:  color = ChatColor.YELLOW;
+                break;
+            case 4:  color = ChatColor.DARK_PURPLE;
+                break;
+            case 5:  color = ChatColor.GOLD;
+                break;
+            case 6:  color = ChatColor.BLACK;
+                break;
+            case 7:  color = ChatColor.LIGHT_PURPLE;
+                break;
+            default: color = ChatColor.WHITE;
+                break;
+        }
+
+        player.setPlayerListName(color + player.getName());
+    }
+
     public static void spawnFirework(Location location, long detonateDelay) {
 
         Firework firework = (Firework) location.getWorld().spawnEntity(location, EntityType.FIREWORK);
@@ -82,4 +114,20 @@ public class UhcUtils {
         // Clear the player's inventory and give hims the Teams selector item.
         UhcUtils.giveTeamsSelectorItem(player);
     }
+
+    public static void displayHearts(Player player) {
+        org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
+        Objective objective = board.getObjective("showhealth");
+        if (objective == null) {
+            String dName = ChatColor.RED + "\u2665";
+            objective = board.registerNewObjective("showhealth", "health", dName, RenderType.HEARTS);
+        }
+        objective.setDisplaySlot(DisplaySlot.PLAYER_LIST);
+    }
+
+    public static void removeHeartsDisplay(Player player){
+        org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
+        board.clearSlot(DisplaySlot.PLAYER_LIST);
+    }
+
 }

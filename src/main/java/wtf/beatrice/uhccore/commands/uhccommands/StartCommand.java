@@ -7,6 +7,7 @@ import org.bukkit.scoreboard.RenderType;
 import wtf.beatrice.uhccore.UhcCore;
 import wtf.beatrice.uhccore.utils.Cache;
 import wtf.beatrice.uhccore.utils.Debugger;
+import wtf.beatrice.uhccore.utils.UhcUtils;
 import wtf.beatrice.uhccore.utils.math.NumberUtils;
 import org.bukkit.*;
 import org.bukkit.command.CommandSender;
@@ -101,13 +102,7 @@ public class StartCommand {
 
 
                 //player.addPotionEffect((new PotionEffect(PotionEffectType.ABSORPTION, 200, 10)));
-                org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
-                Objective objective = board.getObjective("showhealth");
-                if (objective == null) {
-                    String dName = ChatColor.RED + "\u2665";
-                    objective = board.registerNewObjective("showhealth", "health", dName, RenderType.HEARTS);
-                }
-                objective.setDisplaySlot(DisplaySlot.PLAYER_LIST);
+                UhcUtils.displayHearts(player);
                 player.setHealth(10);
                 plugin.getServer().getScheduler().runTaskLater(plugin, ()->
                 {

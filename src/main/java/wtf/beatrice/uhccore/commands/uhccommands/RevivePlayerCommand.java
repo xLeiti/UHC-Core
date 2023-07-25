@@ -55,6 +55,7 @@ public class RevivePlayerCommand {
                             player.setFoodLevel(22);
                             player.setGameMode(GameMode.SURVIVAL);
 
+                            UhcUtils.displayHearts(player);
                             //adding Hearts
                             org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
                             Objective objective = board.getObjective("showhealth");
@@ -78,29 +79,7 @@ public class RevivePlayerCommand {
 
                             }, 20L);
 
-                                ChatColor color;
-                                switch (teamNumber) {
-                                    case 0:  color = ChatColor.BLUE;
-                                        break;
-                                    case 1:  color = ChatColor.RED;
-                                        break;
-                                    case 2:  color = ChatColor.GREEN;
-                                        break;
-                                    case 3:  color = ChatColor.YELLOW;
-                                        break;
-                                    case 4:  color = ChatColor.DARK_PURPLE;
-                                        break;
-                                    case 5:  color = ChatColor.GOLD;
-                                        break;
-                                    case 6:  color = ChatColor.BLACK;
-                                        break;
-                                    case 7:  color = ChatColor.LIGHT_PURPLE;
-                                        break;
-                                    default: color = ChatColor.WHITE;
-                                        break;
-                                }
-
-                                player.setPlayerListName(color + player.getName());
+                                UhcUtils.setTabColor(player, teamNumber);
                         }
                         break;
                     }

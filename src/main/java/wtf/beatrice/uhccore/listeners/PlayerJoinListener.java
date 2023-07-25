@@ -29,12 +29,11 @@ public class PlayerJoinListener implements Listener
 
         if(!(Cache.playerTeam.containsKey(player.getName())))
         {
-            org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
-            board.clearSlot(DisplaySlot.PLAYER_LIST);
+            UhcUtils.removeHeartsDisplay(player);
             UhcUtils.tpSpawnAndGiveItem(player);
         }else{
 
-
+            UhcUtils.displayHearts(player);
 
             int teamNumber = Cache.playerTeam.get(player.getName());
 
@@ -43,30 +42,7 @@ public class PlayerJoinListener implements Listener
             // Update the total number of players in each team, and the total number of alive teams.
             UhcUtils.updatePlayersPerTeam();
 
-
-            ChatColor color;
-            switch (teamNumber) {
-                case 0:  color = ChatColor.BLUE;
-                    break;
-                case 1:  color = ChatColor.RED;
-                    break;
-                case 2:  color = ChatColor.GREEN;
-                    break;
-                case 3:  color = ChatColor.YELLOW;
-                    break;
-                case 4:  color = ChatColor.DARK_PURPLE;
-                    break;
-                case 5:  color = ChatColor.GOLD;
-                    break;
-                case 6:  color = ChatColor.BLACK;
-                    break;
-                case 7:  color = ChatColor.LIGHT_PURPLE;
-                    break;
-                default: color = ChatColor.WHITE;
-                    break;
-            }
-
-            player.setPlayerListName(color + player.getName());
+            UhcUtils.setTabColor(player, teamNumber);
         }
 
         if(Cache.game_running){
