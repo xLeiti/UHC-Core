@@ -18,16 +18,23 @@ public class RevivePlayerCommand {
     public static void revivePlayer(CommandSender sender, String[] args, UhcCore plugin) {
 
         String name = args[1];
-        String team = args[2];
+        int teamNumber = -1;
 
-        if ((name != null)&&team != null) {
+        try{
+            teamNumber = Integer.valueOf(args[2]);
+        } catch (NumberFormatException e){
+            sender.sendMessage("Please enter a number as team ID");
+            return;
+        }
+
+        if ((name != null)&&(teamNumber > -1)&&teamNumber < Cache.totalTeams) {
 
 
-            if ((!Cache.playerTeam.containsKey(name)&&(Cache.teamNames.contains(team)))) {
+            if (!Cache.playerTeam.containsKey(name)) {
 
-                int teamNumber = Cache.teamNames.indexOf(team);
-                int thisPlayerTeamPlayers = Cache.playersPerTeam.get(teamNumber);
-                if(thisPlayerTeamPlayers>0){
+
+
+                if(Cache.playersPerTeam.get(teamNumber)>0){
 
                     // Add the player to that team.
                     Cache.playerTeam.put(name, teamNumber);
@@ -57,6 +64,7 @@ public class RevivePlayerCommand {
                             }
                             objective.setDisplaySlot(DisplaySlot.PLAYER_LIST);
 
+                            int thisPlayerTeamPlayers = Cache.playersPerTeam.get(teamNumber);
 
                             plugin.getServer().getScheduler().runTaskLater(plugin, () ->
                             {
@@ -104,7 +112,7 @@ public class RevivePlayerCommand {
 
 
             } else {
-                sender.sendMessage("/uhc reviveplayer <player> <team>");
+                sender.sendMessage("Player is already part of a Team");
             }
         } else {
             sender.sendMessage("/uhc reviveplayer <player> <team>");

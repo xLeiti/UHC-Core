@@ -140,7 +140,7 @@ public class StartCommand {
                     {
                         player.setInvulnerable(false);
                         player.sendMessage("§7Damage is enabled!");
-                    }, loadDelay * 20L);
+                    }, 60L * 20L);
 
                 });
             }
