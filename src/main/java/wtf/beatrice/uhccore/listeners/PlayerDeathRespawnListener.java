@@ -58,7 +58,6 @@ public class PlayerDeathRespawnListener implements Listener
         }
 
 
-
         // check if the death world is a UHC world (we don't want this to happen in the lobby!)
         // and
         // check if the player is in any team (players who are not in a team are not playing!)
@@ -85,7 +84,6 @@ public class PlayerDeathRespawnListener implements Listener
             // Remove the player from his team.
             Cache.playerTeam.remove(playerName);
 
-            player.teleport(Cache.spawn);
 
 
             // Run this task Async, because it may be CPU heavy.
@@ -161,42 +159,33 @@ public class PlayerDeathRespawnListener implements Listener
     {
         // Load the player value.
         Player player = event.getPlayer();
-
         // Check if the player died during the UHC, so we can get his death location.
         if(deadPlayers.containsKey(event.getPlayer().getName()))
         {
 
-            // Run this task delayed, so we don't have any interference from other plugins.
-            plugin.getServer().getScheduler().runTaskLater(plugin, () ->
-            {
-
-                player.teleport(Cache.spawn);
                 // Check if there is more than 1 team alive.
                 // If there is only 1 team alive, then the UHC is over.
                 if(Cache.playingTeams > 1)
                 {
                     // warn the player that he's not a spectator.
+                    player.teleport(Cache.spawn);
                     player.sendMessage("§cYou died in the UHC and are now a spectator!");
 
                     // teleport him to his death location.
                     //player.teleport(deadPlayers.get(player.getName()));
 
                     // wait 0,5s and set his gamemode to spectator.
-                    plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
+                    //plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
                         //player.setGameMode(GameMode.SPECTATOR);
-                    }, 10L);
+                    //}, 10L);
                 }
                 else
                 {
-                    plugin.getServer().getScheduler().runTaskLater(plugin, () ->
-                    {
                         UhcUtils.tpSpawnAndGiveItem(player);
-                    }, 10L);
                 }
 
                 deadPlayers.remove(player.getName());
 
-            }, 1L);
         }
         else
         {
