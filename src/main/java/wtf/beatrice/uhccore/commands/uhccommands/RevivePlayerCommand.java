@@ -27,6 +27,11 @@ public class RevivePlayerCommand {
             return;
         }
 
+        if(!Cache.game_running){
+            sender.sendMessage("Can't revive player before the game has started");
+            return;
+        }
+
         if ((name != null)&&(teamNumber > -1)&&teamNumber < Cache.totalTeams) {
 
 

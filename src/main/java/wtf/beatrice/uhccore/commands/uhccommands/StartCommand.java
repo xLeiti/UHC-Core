@@ -21,7 +21,7 @@ public class StartCommand {
 
     private static Debugger debugger = new Debugger(StartCommand.class.getName());
 
-    private static int loadDelay = 5;
+    private static int loadDelay = 10;
     static int count = 15;
 
     public static void startUhcCommand(CommandSender sender, UhcCore plugin)
@@ -120,7 +120,13 @@ public class StartCommand {
                     player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                     player.sendTitle("Loading...", "§7Please wait a moment", 20, 70, 10);
 
+                    player.setExp(1F);
 
+                    plugin.getServer().getScheduler().runTaskTimer(plugin, ()->
+                    {
+                        float currentExp = player.getExp();
+                        player.setExp(currentExp-(1F/loadDelay*20L));
+                    }, 0,loadDelay * 20L);
 
                     plugin.getServer().getScheduler().runTaskLater(plugin, ()->
                     {
@@ -174,37 +180,27 @@ public class StartCommand {
             }, (Cache.netherclosetime-15) * 20L * 60L);
 
 
-
-
         });
     }
 
 
     public static void startClosecountdown(UhcCore plugin, World nether) {
 
-
-            if(count>0){
-                plugin.getServer().broadcastMessage("§6§lNether closes in "+count+" minutes!!!");
-
+        if(count>0)
+        {
+            plugin.getServer().broadcastMessage("§6§lNether closes in "+count+" minutes!!!");
                 plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, ()->
                 {
-
                     count--; // reduce the counter
                     startClosecountdown(plugin, nether);
+                    },   60L*20L);
 
-                },   60L*20L);
-
-            }else{
-                plugin.getServer().broadcastMessage("§4§lNether closed.");
-                Cache.nether_enabled = false;
-                for (Player p : nether.getPlayers()) {
-                    p.setHealth(0);
-                }
+        }else{
+            plugin.getServer().broadcastMessage("§4§lNether closed.");
+            Cache.nether_enabled = false;
+            for (Player p : nether.getPlayers()) {
+                p.setHealth(0);
             }
-
-
-
-
+        }
     }
-
 }
