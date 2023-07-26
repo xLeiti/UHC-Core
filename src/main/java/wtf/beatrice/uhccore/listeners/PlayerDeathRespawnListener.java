@@ -117,7 +117,7 @@ public class PlayerDeathRespawnListener implements Listener
                         plugin.getServer().broadcastMessage("§6The UHC is over!");
 
                         //Remove playerhearts display
-                        UhcUtils.removeHeartsDisplay(player);
+
 
                         int winningTeam = 0;
                         for(int i = 0; i < Cache.totalTeams; i++)
@@ -135,6 +135,7 @@ public class PlayerDeathRespawnListener implements Listener
 
                         for(Player currentPlayer : plugin.getServer().getOnlinePlayers())
                         {
+                            UhcUtils.removeHeartsDisplay(currentPlayer);
                             currentPlayer.teleport(Cache.spawn);
                             // Clear his inventory and give him the Teams selector item.
                             UhcUtils.giveTeamsSelectorItem(currentPlayer);
@@ -159,6 +160,7 @@ public class PlayerDeathRespawnListener implements Listener
     {
         // Load the player value.
         Player player = event.getPlayer();
+        player.teleport(Cache.spawn);
         // Check if the player died during the UHC, so we can get his death location.
         if(deadPlayers.containsKey(event.getPlayer().getName()))
         {
@@ -168,9 +170,11 @@ public class PlayerDeathRespawnListener implements Listener
                 if(Cache.playingTeams > 1)
                 {
                     // warn the player that he's not a spectator.
-                    player.teleport(Cache.spawn);
-                    player.sendMessage("§cYou died in the UHC and are now a spectator!");
-
+                    plugin.getServer().getScheduler().runTask(plugin, () ->
+                            {
+                                player.teleport(Cache.spawn);
+                                player.sendMessage("§cYou died in the UHC and are now a spectator!");
+                            });
                     // teleport him to his death location.
                     //player.teleport(deadPlayers.get(player.getName()));
 
@@ -181,7 +185,10 @@ public class PlayerDeathRespawnListener implements Listener
                 }
                 else
                 {
+                    plugin.getServer().getScheduler().runTask(plugin, () ->
+                    {
                         UhcUtils.tpSpawnAndGiveItem(player);
+                    });
                 }
 
                 deadPlayers.remove(player.getName());
@@ -190,10 +197,10 @@ public class PlayerDeathRespawnListener implements Listener
         else
         {
 
-            plugin.getServer().getScheduler().runTaskLater(plugin, () ->
+            plugin.getServer().getScheduler().runTask(plugin, () ->
             {
                 UhcUtils.tpSpawnAndGiveItem(player);
-            }, 10L);
+            });
         }
 
 

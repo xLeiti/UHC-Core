@@ -32,7 +32,7 @@ public class RevivePlayerCommand {
             return;
         }
 
-        if ((name != null)&&(teamNumber > -1)&&teamNumber < Cache.totalTeams) {
+        if ((name != null)&&(teamNumber > -1)&&teamNumber < Cache.totalTeams+1) {
 
 
             if (!Cache.playerTeam.containsKey(name)) {
@@ -42,14 +42,14 @@ public class RevivePlayerCommand {
                 if(Cache.playersPerTeam.get(teamNumber)>0){
 
                     // Add the player to that team.
-                    Cache.playerTeam.put(name, teamNumber);
                     Player player = plugin.getServer().getPlayer(name);
 
                     for(String matesName : Cache.playerTeam.keySet()) {
                         Player mate = plugin.getServer().getPlayer(matesName);
                         if (mate != null &&(Cache.playerTeam.get(matesName) == teamNumber)) {
                             Location hisTeamLoc = mate.getLocation();
-
+                            Cache.playerTeam.put(name, teamNumber);
+                            UhcUtils.updatePlayersPerTeam();
                             String teamName = Cache.teamNames.get(teamNumber);
 
                             player.getInventory().clear();

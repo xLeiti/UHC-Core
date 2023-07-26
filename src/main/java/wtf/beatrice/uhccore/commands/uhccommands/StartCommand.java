@@ -1,6 +1,7 @@
 package wtf.beatrice.uhccore.commands.uhccommands;
 
 
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.RenderType;
@@ -122,11 +123,19 @@ public class StartCommand {
 
                     player.setExp(1F);
 
-                    plugin.getServer().getScheduler().runTaskTimer(plugin, ()->
+                    new BukkitRunnable()
                     {
-                        float currentExp = player.getExp();
-                        player.setExp(currentExp-(1F/loadDelay*20L));
-                    }, 0,loadDelay * 20L);
+
+                        public void run()
+                        {
+                            float currentExp = player.getExp();
+                            float newExp = currentExp-(1F/(float)(loadDelay * 20L+1L));
+                            if(newExp>0f)
+                            player.setExp(newExp);
+                            else
+                            this.cancel();
+                        }
+                    }.runTaskTimer(plugin, 0, 1);
 
                     plugin.getServer().getScheduler().runTaskLater(plugin, ()->
                     {
