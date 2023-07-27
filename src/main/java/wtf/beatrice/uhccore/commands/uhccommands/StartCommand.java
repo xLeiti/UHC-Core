@@ -2,9 +2,6 @@ package wtf.beatrice.uhccore.commands.uhccommands;
 
 
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.RenderType;
 import wtf.beatrice.uhccore.UhcCore;
 import wtf.beatrice.uhccore.utils.Cache;
 import wtf.beatrice.uhccore.utils.Debugger;
