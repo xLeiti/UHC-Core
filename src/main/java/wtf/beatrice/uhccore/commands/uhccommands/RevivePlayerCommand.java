@@ -32,7 +32,7 @@ public class RevivePlayerCommand {
             return;
         }
 
-        if ((name != null)&&(teamNumber > -1)&&teamNumber < Cache.totalTeams+1) {
+        if ((name != null)&&(teamNumber > 0)&&teamNumber < Cache.totalTeams+1) {
 
 
             if (!Cache.playerTeam.containsKey(name)) {
@@ -76,7 +76,7 @@ public class RevivePlayerCommand {
                             {
 
                                 int playingPlayers = Cache.playerTeam.size();
-                                plugin.getServer().broadcastMessage("Player" + player.getName() + "§7 got revived into §e" + teamName );
+                                plugin.getServer().broadcastMessage("§7Player §e" + player.getName() + "§7 got revived into §e" + teamName );
                                 plugin.getServer().broadcastMessage(teamName + "§7 consists of §e" + thisPlayerTeamPlayers + "§7 players now.");
                                 plugin.getServer().broadcastMessage("§7In total remain §e" + playingPlayers + "§7 players, in §e" + Cache.playingTeams + "§7 teams.");
                                 player.setHealth(10);

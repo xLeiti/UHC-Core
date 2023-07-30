@@ -26,8 +26,9 @@ public class RemovePlayerCommand {
                 //remove player from the team
                 Cache.playerTeam.remove(name);
                 sender.sendMessage("Player " + name + " was successfully removed from the UHC!");
-
-
+                Player player = plugin.getServer().getPlayer(name);
+                UhcUtils.removeHeartsDisplay(player);
+                UhcUtils.tpSpawnAndGiveItem(player);
 
                 plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () ->
 

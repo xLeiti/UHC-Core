@@ -5,6 +5,7 @@ import wtf.beatrice.uhccore.commands.uhccommands.GlobalChat;
 import wtf.beatrice.uhccore.completers.InfoCompleter;
 import wtf.beatrice.uhccore.listeners.*;
 import wtf.beatrice.uhccore.utils.Debugger;
+import wtf.beatrice.uhccore.utils.UhcUtils;
 import wtf.beatrice.uhccore.utils.configuration.FileUtils;
 import wtf.beatrice.uhccore.utils.MessageUtils;
 import org.bukkit.plugin.PluginManager;
@@ -91,6 +92,7 @@ public class UhcCore extends JavaPlugin
             getCommand("uhc").setExecutor(uhcCoreCommandInstance);
             getCommand("uhc").setTabCompleter(new InfoCompleter());
             debugger.sendDebugMessage(Level.INFO, "Done registering commands!");
+
 
             // Send success output message to console.
             logger.log(Level.INFO, "Plugin " + getDescription().getName() + " Successfully Loaded!");

@@ -1,13 +1,8 @@
 package wtf.beatrice.uhccore.utils;
 
-import org.bukkit.ChatColor;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.RenderType;
+import org.bukkit.*;
+import org.bukkit.scoreboard.*;
 import wtf.beatrice.uhccore.UhcCore;
-import org.bukkit.Color;
-import org.bukkit.FireworkEffect;
-import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
@@ -60,6 +55,11 @@ public class UhcUtils {
 
     public static void setTabColor(Player player, Integer teamNumber)
     {
+        player.setPlayerListName(returnColor(teamNumber) + player.getName());
+    }
+
+    public static ChatColor returnColor(Integer teamNumber)
+    {
 
         ChatColor color;
         switch (teamNumber) {
@@ -83,7 +83,24 @@ public class UhcUtils {
                 break;
         }
 
-        player.setPlayerListName(color + player.getName());
+        return color;
+
+    }
+
+    public static void setTeam(Player player, Integer teamNumber)
+    {
+        registerTeams(player);
+        org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
+        Team team = board.getTeam(Cache.teamNames.get(teamNumber));
+        team.addPlayer(player);
+        team.addEntry(player.getName());
+    }
+    public static void removeFromTeams(Player player)
+    {
+        for (Team team: player.getScoreboard().getTeams()){
+            team.removePlayer(player);
+            team.removeEntry(player.getName());
+        }
     }
 
     public static void spawnFirework(Location location, long detonateDelay) {
@@ -123,6 +140,19 @@ public class UhcUtils {
             objective = board.registerNewObjective("showhealth", "health", dName, RenderType.HEARTS);
         }
         objective.setDisplaySlot(DisplaySlot.PLAYER_LIST);
+    }
+
+    public static void registerTeams(Player player){
+
+        org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
+
+        for(int i = 0; i< Cache.teamNames.size(); i++){
+            Team team = board.getTeam(Cache.teamNames.get(i));
+            if (team == null) {
+                team = board.registerNewTeam(Cache.teamNames.get(i));
+                team.setPrefix(returnColor(i).toString());
+            }
+        }
     }
 
     public static void removeHeartsDisplay(Player player){
