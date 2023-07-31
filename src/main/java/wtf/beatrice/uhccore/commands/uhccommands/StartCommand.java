@@ -72,7 +72,7 @@ public class StartCommand {
                 spawnPerTeam.put(i, loc);
                 debugger.sendDebugMessage(Level.INFO, "found block! " + loc);
                 if(standingBlockType.equals(Material.WATER) || standingBlockType.equals(Material.LAVA) || standingBlockType.equals(Material.AIR)
-                || !upperBlockType.equals(Material.AIR) || !loc.getBlock().getType().equals(Material.AIR))
+                || !upperBlockType.equals(Material.AIR) || !loc.getBlock().getType().equals(Material.AIR)|| (loc.getY() > 150)|| (loc.getY() < 60))
                 {
                     debugger.sendDebugMessage(Level.WARNING, "block is not valid: " + standingBlockType + ", " + loc.getBlock().getType() + ", " + upperBlockType);
                     i--;
