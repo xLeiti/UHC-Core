@@ -21,6 +21,7 @@ public class InfoCompleter implements TabCompleter {
             list.add("help");
             list.add("setspawn");
             list.add("setfirework");
+            list.add("setglowing");
             list.add("start");
             list.add("reload");
             list.add("list");
@@ -36,6 +37,7 @@ public class InfoCompleter implements TabCompleter {
                 list.clear();
                 list.add("setspawn");
                 list.add("setfirework");
+                list.add("setglowing");
                 list.add("start");
 
             } else
@@ -63,9 +65,15 @@ public class InfoCompleter implements TabCompleter {
             if(args[0].equalsIgnoreCase("reviveplayer"))
             {
                 for (Player player : UhcCore.getInstance().getServer().getOnlinePlayers()) {
-                    if(!Cache.playerTeam.containsKey(player.getName()))
-                    list.add(player.getName());
+                    if(!Cache.playerTeam.containsKey(player.getName())){
+                        list.add(player.getName());
+                    }
                 }
+            }else
+            if(args[0].equalsIgnoreCase("setglowing"))
+            {
+                list.add("true");
+                list.add("false");
             }
         }else
         if(args.length == 3 && args[0].equalsIgnoreCase("reviveplayer"))

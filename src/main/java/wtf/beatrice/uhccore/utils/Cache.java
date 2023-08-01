@@ -36,6 +36,9 @@ public class Cache {
 
     public static boolean game_running = false;
 
+    //Boolean toggle all alive players glowing
+    public static boolean glowing = false;
+
     // ItemStacks to store the "team selector" and "quit team" items + data.
     public static ItemStack teamsItem, quitTeamItem;
 

@@ -46,7 +46,7 @@ public class PlayerDeathRespawnListener implements Listener
     {
 
         Player player = event.getEntity();
-
+        player.setGlowing(false);
         // Remove the Teams selector item from the drops.
         event.getDrops().remove(Cache.teamsItem);
 
@@ -130,11 +130,12 @@ public class PlayerDeathRespawnListener implements Listener
 
                         String teamName = Cache.teamNames.get(winningTeam) + "§r";
                         plugin.getServer().broadcastMessage("§6The winners are: " + teamName);
-
+                        Cache.glowing = false;
 
 
                         for(Player currentPlayer : plugin.getServer().getOnlinePlayers())
                         {
+                            currentPlayer.setGlowing(false);
                             UhcUtils.removeHeartsDisplay(currentPlayer);
                             currentPlayer.teleport(Cache.spawn);
                             // Clear his inventory and give him the Teams selector item.

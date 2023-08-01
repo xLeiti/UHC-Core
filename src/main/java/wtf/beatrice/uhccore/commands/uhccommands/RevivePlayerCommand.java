@@ -60,6 +60,9 @@ public class RevivePlayerCommand {
                             player.setFoodLevel(22);
                             player.setGameMode(GameMode.SURVIVAL);
 
+                            if(Cache.glowing)
+                                player.setGlowing(true);
+
                             UhcUtils.displayHearts(player);
                             //adding Hearts
                             org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();

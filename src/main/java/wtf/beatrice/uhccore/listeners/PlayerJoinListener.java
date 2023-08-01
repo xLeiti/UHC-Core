@@ -31,6 +31,7 @@ public class PlayerJoinListener implements Listener
         {
             UhcUtils.removeHeartsDisplay(player);
             UhcUtils.tpSpawnAndGiveItem(player);
+            player.setGlowing(false);
         }else{
 
             UhcUtils.displayHearts(player);
@@ -43,6 +44,9 @@ public class PlayerJoinListener implements Listener
             UhcUtils.updatePlayersPerTeam();
 
             UhcUtils.setTabColor(player, teamNumber);
+
+            if(Cache.glowing)
+                player.setGlowing(true);
         }
 
         if(Cache.game_running){
