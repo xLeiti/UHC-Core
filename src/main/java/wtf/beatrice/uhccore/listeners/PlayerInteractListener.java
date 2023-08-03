@@ -31,8 +31,13 @@ public class PlayerInteractListener implements Listener
             // check if the player's item in hand was the Teams selector item.
             if(player.getInventory().getItemInMainHand().equals(Cache.teamsItem))
             {
-                // Open the teams selector GUI.
-                player.openInventory(Cache.teamsSelectorGUI.getInventory());
+                if(!Cache.game_running){
+                    // Open the teams selector GUI.
+                    player.openInventory(Cache.teamsSelectorGUI.getInventory());
+                }else{
+                    player.sendMessage("You can't join a team, the game is already running.");
+                }
+
             }
         }
     }
@@ -55,6 +60,7 @@ public class PlayerInteractListener implements Listener
             // Cancel the event (we don't want items to be moved!)
             event.setCancelled(true);
 
+
             // Load the item's item meta.
             ItemMeta im = item.getItemMeta();
             // if it's null, return.
@@ -63,6 +69,10 @@ public class PlayerInteractListener implements Listener
             // Load the player and close his inventory.
             Player player = (Player) event.getWhoClicked();
             player.closeInventory();
+            if(Cache.game_running){
+                player.sendMessage("You can't join a team, the game is already running.");
+                return;
+            }
             String playername = player.getName();
 
             // Check if the clicked item is an existing Team.

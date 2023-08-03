@@ -19,7 +19,7 @@ public class GlowingCommand {
             for(String playerName : Cache.playerTeam.keySet())
             {
                 Player player = plugin.getServer().getPlayer(playerName);
-                assert player != null;
+                if(player==null){continue;}
                 player.setGlowing(true);
                 player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                 plugin.getServer().broadcastMessage("All players glow now!");
@@ -30,7 +30,7 @@ public class GlowingCommand {
             for(String playerName : Cache.playerTeam.keySet())
             {
                 Player player = plugin.getServer().getPlayer(playerName);
-                assert player != null;
+                if(player==null){continue;}
                 player.setGlowing(false);
                 player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                 plugin.getServer().broadcastMessage("Players are no longer glowing.");

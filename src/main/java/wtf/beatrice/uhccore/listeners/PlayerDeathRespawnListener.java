@@ -161,7 +161,8 @@ public class PlayerDeathRespawnListener implements Listener
     {
         // Load the player value.
         Player player = event.getPlayer();
-        player.teleport(Cache.spawn);
+        event.setRespawnLocation(Cache.spawn);
+        //player.teleport(Cache.spawn);
         // Check if the player died during the UHC, so we can get his death location.
         if(deadPlayers.containsKey(event.getPlayer().getName()))
         {
@@ -173,7 +174,7 @@ public class PlayerDeathRespawnListener implements Listener
                     // warn the player that he's not a spectator.
                     plugin.getServer().getScheduler().runTask(plugin, () ->
                             {
-                                player.teleport(Cache.spawn);
+                                //player.teleport(Cache.spawn);
                                 player.sendMessage("§cYou died in the UHC and are now a spectator!");
                             });
                     // teleport him to his death location.

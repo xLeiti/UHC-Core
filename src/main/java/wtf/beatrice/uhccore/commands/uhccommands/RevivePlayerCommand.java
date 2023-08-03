@@ -32,7 +32,7 @@ public class RevivePlayerCommand {
             return;
         }
 
-        if ((name != null)&&(teamNumber > 0)&&teamNumber < Cache.totalTeams+1) {
+        if ((name != null)&&(teamNumber > 0)&&teamNumber <= Cache.totalTeams) {
 
 
             if (!Cache.playerTeam.containsKey(name)) {
