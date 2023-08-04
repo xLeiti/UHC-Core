@@ -66,7 +66,7 @@ public class PlayerDeathRespawnListener implements Listener
 
             // Spawn a Firework where the player died.
             UhcUtils.spawnFirework(player.getLocation(), 15L);
-
+            UhcUtils.removeFromTeams(player);
             // Drop golden apple
             ItemStack gapple = new ItemStack(Material.GOLDEN_APPLE, 1);
             event.getDrops().add(gapple);

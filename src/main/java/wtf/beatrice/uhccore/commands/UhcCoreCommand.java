@@ -68,15 +68,6 @@ public class UhcCoreCommand implements CommandExecutor
                 }
 
             }
-            else if(args[0].equalsIgnoreCase("setglowing"))
-            {
-                if(commandSender instanceof Player && ((Player)commandSender).isOp()){
-                    GlowingCommand.setGlowing(commandSender, args, plugin);
-                }else{
-                    commandSender.sendMessage("Sorry you need to be Admin to use this command");
-                }
-
-            }
             else if(args[0].equalsIgnoreCase("setspawn"))
             {
                 if(!(commandSender instanceof Player))
@@ -122,6 +113,15 @@ public class UhcCoreCommand implements CommandExecutor
                 }else{
                     commandSender.sendMessage("Sorry you need to be Admin to use this command");
                 }
+            }
+            else if(args[0].equalsIgnoreCase("setglowing"))
+            {
+                if(commandSender instanceof Player && ((Player)commandSender).isOp()){
+                    GlowingCommand.setGlowing(commandSender, args, plugin);
+                }else{
+                    commandSender.sendMessage("Sorry you need to be Admin to use this command");
+                }
+
             }
         }
         else if (args.length == 3) {

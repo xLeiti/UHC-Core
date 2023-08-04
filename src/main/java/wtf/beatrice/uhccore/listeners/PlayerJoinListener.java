@@ -33,15 +33,13 @@ public class PlayerJoinListener implements Listener
             UhcUtils.tpSpawnAndGiveItem(player);
             player.setGlowing(false);
         }else{
-
-            UhcUtils.displayHearts(player);
-
+            if(Cache.game_running) {
+                UhcUtils.displayHearts(player);
+            }else{
+                UhcUtils.removeHeartsDisplay(player);
+            }
             int teamNumber = Cache.playerTeam.get(player.getName());
 
-            Cache.playerTeam.put(player.getName(), teamNumber);
-
-            // Update the total number of players in each team, and the total number of alive teams.
-            UhcUtils.updatePlayersPerTeam();
 
             UhcUtils.setTabColor(player, teamNumber);
 
@@ -54,6 +52,8 @@ public class PlayerJoinListener implements Listener
             {
                 player.setHealth(0);
             }
+
+
 
 
         }

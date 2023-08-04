@@ -112,6 +112,11 @@ public class StartCommand {
 
                 plugin.getServer().getScheduler().runTask(plugin, () ->
                 {
+                    for(String hiddenplayerName : Cache.playerTeam.keySet())
+                    {
+                        Player hiddenPlayer = plugin.getServer().getPlayer(hiddenplayerName);
+                        player.hidePlayer(plugin, hiddenPlayer);
+                    }
                     player.setInvulnerable(true);
                     player.teleport(hisTeamLoc);
                     player.getInventory().clear();
@@ -136,6 +141,13 @@ public class StartCommand {
 
                     plugin.getServer().getScheduler().runTaskLater(plugin, ()->
                     {
+
+                            for(String hiddenplayerName : Cache.playerTeam.keySet())
+                            {
+                                Player hiddenPlayer = plugin.getServer().getPlayer(hiddenplayerName);
+                                player.showPlayer(plugin, hiddenPlayer);
+                            }
+
                         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
                         player.sendTitle("The §dUHC§r has begun!", "Good luck!", 20, 70, 10);
                         player.setHealth(20);

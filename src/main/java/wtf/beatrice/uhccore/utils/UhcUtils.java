@@ -55,7 +55,7 @@ public class UhcUtils {
 
     public static void setTabColor(Player player, Integer teamNumber)
     {
-        player.setPlayerListName(returnColor(teamNumber) + player.getName());
+        //player.setPlayerListName(returnColor(teamNumber) + player.getName());
     }
 
     public static ChatColor returnColor(Integer teamNumber)
@@ -90,16 +90,21 @@ public class UhcUtils {
     public static void setTeam(Player player, Integer teamNumber)
     {
         registerTeams(player);
-        org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
+        Scoreboard board = player.getServer().getScoreboardManager().getMainScoreboard();
         Team team = board.getTeam(Cache.teamNames.get(teamNumber));
-        team.addPlayer(player);
         team.addEntry(player.getName());
     }
     public static void removeFromTeams(Player player)
     {
-        for (Team team: player.getScoreboard().getTeams()){
-            team.removePlayer(player);
+        for (Team team : player.getServer().getScoreboardManager().getMainScoreboard().getTeams()){
             team.removeEntry(player.getName());
+        }
+    }
+    public static void clearTeams()
+    {
+        for (Team team : UhcCore.getInstance().getServer().getScoreboardManager().getMainScoreboard().getTeams()){
+            for(String string : team.getEntries())
+                team.removeEntry(string);
         }
     }
 
@@ -144,20 +149,24 @@ public class UhcUtils {
 
     public static void registerTeams(Player player){
 
-        org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
+        Scoreboard board = player.getServer().getScoreboardManager().getMainScoreboard();
 
         for(int i = 0; i< Cache.teamNames.size(); i++){
             Team team = board.getTeam(Cache.teamNames.get(i));
+            team.setColor(returnColor(i));
             if (team == null) {
                 team = board.registerNewTeam(Cache.teamNames.get(i));
-                team.setPrefix(returnColor(i).toString());
+                team.setColor(returnColor(i));
             }
+
         }
     }
 
     public static void removeHeartsDisplay(Player player){
         org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
-        board.clearSlot(DisplaySlot.PLAYER_LIST);
+        board.resetScores(player);
+
+
     }
 
 }

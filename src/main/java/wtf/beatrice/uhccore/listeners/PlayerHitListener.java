@@ -1,10 +1,16 @@
 package wtf.beatrice.uhccore.listeners;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Server;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityRegainHealthEvent;
+import wtf.beatrice.uhccore.UhcCore;
 import wtf.beatrice.uhccore.utils.Cache;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import wtf.beatrice.uhccore.utils.UhcUtils;
 
 public class PlayerHitListener implements Listener
 {
@@ -42,4 +48,27 @@ public class PlayerHitListener implements Listener
             event.getDamager().sendMessage("§cFriendly fire is disabled");
         }
     }
+
+    @EventHandler
+    public void onPlayerDamage(EntityDamageEvent event)
+    {
+
+
+        // check if player
+        if(event.getEntity() instanceof Player)
+        {
+
+            Player player = (Player) event.getEntity();
+            if(player.getWorld().equals(Cache.lobbyWorlds))
+            {
+                event.setCancelled(true);
+                if(player.getLocation().getY()<-150){
+                    UhcUtils.tpSpawnAndGiveItem(player);
+                }
+            }
+        }
+
+    }
+
+
 }

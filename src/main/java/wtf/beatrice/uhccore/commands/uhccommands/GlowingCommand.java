@@ -12,9 +12,7 @@ public class GlowingCommand {
     public static void setGlowing(CommandSender sender, String[] args, UhcCore plugin) {
 
         String text = args[1];
-
         if(text.equals("true")){
-
             Cache.glowing = true;
             for(String playerName : Cache.playerTeam.keySet())
             {

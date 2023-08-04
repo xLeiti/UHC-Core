@@ -10,6 +10,7 @@ import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import wtf.beatrice.uhccore.utils.UhcUtils;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -59,12 +60,17 @@ public class FileUtils
         FileType.CONFIG_YAML.yaml = YamlConfiguration.loadConfiguration(FileType.CONFIG_YAML.file);
         FileType.LANG_YAML.yaml = YamlConfiguration.loadConfiguration(FileType.LANG_YAML.file);
 
+
+
         Cache.playerTeam.clear();
         Cache.playersPerTeam.clear();
         Cache.teamNames.clear();
         Cache.teamItemsMaterials.clear();
         Cache.spawn = null;
         Cache.fireworksLocations.clear();
+
+        Cache.game_running = false;
+        UhcUtils.clearTeams();
 
         Cache.playingTeams = 0;
 
