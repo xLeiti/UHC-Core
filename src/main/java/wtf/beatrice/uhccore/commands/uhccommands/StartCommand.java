@@ -115,6 +115,7 @@ public class StartCommand {
                     for(String hiddenplayerName : Cache.playerTeam.keySet())
                     {
                         Player hiddenPlayer = plugin.getServer().getPlayer(hiddenplayerName);
+                        if (hiddenPlayer != null &&(Cache.playerTeam.get(hiddenplayerName) == teamNumber))
                         player.hidePlayer(plugin, hiddenPlayer);
                     }
                     player.setInvulnerable(true);
@@ -168,7 +169,11 @@ public class StartCommand {
             {
                 spawnWorld.setTime(0L);
                 spawnWorld.setGameRule(GameRule.NATURAL_REGENERATION, false);
+                spawnWorld.setGameRule(GameRule.DO_IMMEDIATE_RESPAWN, true);
+                spawnWorld.setGameRule(GameRule.SPAWN_RADIUS, 0);
                 Nether.setGameRule(GameRule.NATURAL_REGENERATION, false);
+                Nether.setGameRule(GameRule.DO_IMMEDIATE_RESPAWN, true);
+                Nether.setGameRule(GameRule.SPAWN_RADIUS, 0);
                 spawnWorld.setDifficulty(Difficulty.NORMAL);
                 spawnWorld.getWorldBorder().setCenter(borderCenter);
                 spawnWorld.getWorldBorder().setSize(borderSize);

@@ -50,6 +50,7 @@ public class RevivePlayerCommand {
                             Location hisTeamLoc = mate.getLocation();
                             Cache.playerTeam.put(name, teamNumber);
                             UhcUtils.updatePlayersPerTeam();
+                            UhcUtils.setTeam(player, teamNumber);
                             String teamName = Cache.teamNames.get(teamNumber);
 
                             player.getInventory().clear();
@@ -79,7 +80,7 @@ public class RevivePlayerCommand {
                             {
 
                                 int playingPlayers = Cache.playerTeam.size();
-                                plugin.getServer().broadcastMessage("§7Player §e" + player.getName() + "§7 got revived into §e" + teamName );
+                                plugin.getServer().broadcastMessage("§7Player " + player.getDisplayName() + "§7 got revived into §e" + teamName );
                                 plugin.getServer().broadcastMessage(teamName + "§7 consists of §e" + thisPlayerTeamPlayers + "§7 players now.");
                                 plugin.getServer().broadcastMessage("§7In total remain §e" + playingPlayers + "§7 players, in §e" + Cache.playingTeams + "§7 teams.");
                                 player.setHealth(10);
@@ -87,7 +88,7 @@ public class RevivePlayerCommand {
 
                             }, 20L);
 
-                                UhcUtils.setTabColor(player, teamNumber);
+
                         }
                         break;
                     }

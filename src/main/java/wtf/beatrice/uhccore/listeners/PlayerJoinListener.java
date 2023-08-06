@@ -31,6 +31,7 @@ public class PlayerJoinListener implements Listener
         if(!(Cache.playerTeam.containsKey(player.getName())))
         {
             UhcUtils.tpSpawnAndGiveItem(player);
+            player.setHealth(20);
             UhcUtils.removeHeartsDisplay(player);
             player.setGlowing(false);
         }else{

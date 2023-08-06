@@ -65,7 +65,7 @@ public class PlayerDeathRespawnListener implements Listener
 
             // Spawn a Firework where the player died.
             UhcUtils.spawnFirework(player.getLocation(), 15L);
-            UhcUtils.removeFromTeams(player);
+            //UhcUtils.removeFromTeams(player);
             // Drop golden apple
             ItemStack gapple = new ItemStack(Material.GOLDEN_APPLE, 1);
             event.getDrops().add(gapple);
@@ -104,7 +104,7 @@ public class PlayerDeathRespawnListener implements Listener
                     {
                         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                     }
-                    plugin.getServer().broadcastMessage(playerName + "§7 of team §e" + thisPlayerTeamName + "§7 got eliminated!");
+                    plugin.getServer().broadcastMessage(player.getDisplayName() + "§7 of team §e" + thisPlayerTeamName + "§7 got eliminated!");
                     plugin.getServer().broadcastMessage("§7In team " + thisPlayerTeamName + "§7 remain §e" + thisPlayerTeamPlayers + "§7 players.");
                     plugin.getServer().broadcastMessage("§7In total remain §e" + playingPlayers + "§7 players, in §e" + Cache.playingTeams + "§7 teams.");
 
@@ -135,8 +135,9 @@ public class PlayerDeathRespawnListener implements Listener
                         for(Player currentPlayer : plugin.getServer().getOnlinePlayers())
                         {
                             currentPlayer.setGlowing(false);
-                            UhcUtils.removeHeartsDisplay(currentPlayer);
                             currentPlayer.teleport(Cache.spawn);
+                            currentPlayer.setHealth(20);
+                            UhcUtils.removeHeartsDisplay(currentPlayer);
                             // Clear his inventory and give him the Teams selector item.
                             UhcUtils.giveTeamsSelectorItem(currentPlayer);
                             plugin.getLogger().log(Level.INFO,"UHC Finished!");
@@ -161,6 +162,7 @@ public class PlayerDeathRespawnListener implements Listener
         // Load the player value.
         Player player = event.getPlayer();
         event.setRespawnLocation(Cache.spawn);
+        UhcUtils.removeHeartsDisplay(player);
         //player.teleport(Cache.spawn);
         // Check if the player died during the UHC, so we can get his death location.
         if(deadPlayers.containsKey(event.getPlayer().getName()))
