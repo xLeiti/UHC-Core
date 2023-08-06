@@ -190,6 +190,11 @@ public class StartCommand {
             plugin.getServer().getScheduler().runTaskLaterAsynchronously(plugin, ()->
             {
                 plugin.getServer().broadcastMessage("§6Horizontal border reached it's final state");
+
+                //testing
+                //Bukkit.getServer().dispatchCommand(sender, "hb setup 63");
+                //Bukkit.getServer().dispatchCommand(sender, "hb start");
+
             }, Cache.borderTime * 20L * 60L);
 
             plugin.getServer().getScheduler().runTaskLaterAsynchronously(plugin, ()->

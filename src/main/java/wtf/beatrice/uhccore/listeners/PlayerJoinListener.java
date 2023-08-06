@@ -27,24 +27,24 @@ public class PlayerJoinListener implements Listener
         Player player = e.getPlayer();
 
 
+
         if(!(Cache.playerTeam.containsKey(player.getName())))
         {
-            UhcUtils.removeHeartsDisplay(player);
             UhcUtils.tpSpawnAndGiveItem(player);
+            UhcUtils.removeHeartsDisplay(player);
             player.setGlowing(false);
         }else{
+
+            if(Cache.glowing){
+                player.setGlowing(true);
+            }
+
+
             if(Cache.game_running) {
                 UhcUtils.displayHearts(player);
             }else{
                 UhcUtils.removeHeartsDisplay(player);
             }
-            int teamNumber = Cache.playerTeam.get(player.getName());
-
-
-            UhcUtils.setTabColor(player, teamNumber);
-
-            if(Cache.glowing)
-                player.setGlowing(true);
         }
 
         if(Cache.game_running){

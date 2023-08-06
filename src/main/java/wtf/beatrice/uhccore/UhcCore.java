@@ -5,7 +5,6 @@ import wtf.beatrice.uhccore.commands.uhccommands.GlobalChat;
 import wtf.beatrice.uhccore.completers.InfoCompleter;
 import wtf.beatrice.uhccore.listeners.*;
 import wtf.beatrice.uhccore.utils.Debugger;
-import wtf.beatrice.uhccore.utils.UhcUtils;
 import wtf.beatrice.uhccore.utils.configuration.FileUtils;
 import wtf.beatrice.uhccore.utils.MessageUtils;
 import org.bukkit.plugin.PluginManager;
@@ -54,7 +53,7 @@ public class UhcCore extends JavaPlugin
             UhcCoreCommand uhcCoreCommandInstance = new UhcCoreCommand(this);
             getCommand("g").setExecutor(new GlobalChat(this));
             MessageUtils messageUtilsInstance = new MessageUtils(this);
-            PlayerChatListener playerChatListenerInstance = new PlayerChatListener(this);
+            PlayerDeathRespawnListener.PlayerChatListener playerChatListenerInstance = new PlayerDeathRespawnListener.PlayerChatListener(this);
             EnterNetherListenener enterNetherListenener = new EnterNetherListenener(this);
             BlockBreakListener blockBreakListener = new BlockBreakListener(this);
             PlayerDeathRespawnListener playerDeathRespawnListenerInstance = new PlayerDeathRespawnListener(this);

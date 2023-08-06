@@ -90,7 +90,7 @@ public class PlayerInteractListener implements Listener
                 UhcUtils.updatePlayersPerTeam();
 
 
-                UhcUtils.setTabColor(player, teamNumber);
+                //UhcUtils.setTabColor(player, teamNumber);
                 UhcUtils.setTeam(player, teamNumber);
 
 
@@ -108,7 +108,7 @@ public class PlayerInteractListener implements Listener
                     // Remove the player from the team.
                     player.sendMessage("§eYou left the team!");
                     Cache.playerTeam.remove(player.getName());
-                    player.setPlayerListName(ChatColor.WHITE + playername);
+                    //player.setPlayerListName(ChatColor.WHITE + playername);
                     UhcUtils.removeFromTeams(player);
 
                     // Update the total number of players in each team, and the total number of alive teams.

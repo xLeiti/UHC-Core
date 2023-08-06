@@ -33,6 +33,7 @@ teams:
   - '§6Orange'
   - '§8Black'
   - '§dPink'
+  - '§bTeal'
 team-items:
   - 'BLUE_WOOL'
   - 'RED_WOOL'
@@ -42,3 +43,4 @@ team-items:
   - 'ORANGE_WOOL'
   - 'BLACK_WOOL'
   - 'PINK_WOOL'
+  - 'LIGHT_BLUE_WOOL'

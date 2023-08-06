@@ -52,19 +52,17 @@ public class PlayerHitListener implements Listener
     @EventHandler
     public void onPlayerDamage(EntityDamageEvent event)
     {
-
-
         // check if player
         if(event.getEntity() instanceof Player)
         {
-
             Player player = (Player) event.getEntity();
-            if(player.getWorld().equals(Cache.lobbyWorlds))
+            if(player.getWorld().getName().equals(Cache.lobbyWorlds.get(0)))
             {
                 event.setCancelled(true);
                 if(player.getLocation().getY()<-150){
                     UhcUtils.tpSpawnAndGiveItem(player);
                 }
+                UhcUtils.removeHeartsDisplay(player);
             }
         }
 

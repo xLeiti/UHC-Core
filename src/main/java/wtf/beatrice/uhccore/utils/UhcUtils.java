@@ -79,6 +79,8 @@ public class UhcUtils {
                 break;
             case 7:  color = ChatColor.LIGHT_PURPLE;
                 break;
+            case 8:  color = ChatColor.AQUA;
+                break;
             default: color = ChatColor.WHITE;
                 break;
         }
@@ -153,20 +155,23 @@ public class UhcUtils {
 
         for(int i = 0; i< Cache.teamNames.size(); i++){
             Team team = board.getTeam(Cache.teamNames.get(i));
-            team.setColor(returnColor(i));
             if (team == null) {
                 team = board.registerNewTeam(Cache.teamNames.get(i));
                 team.setColor(returnColor(i));
+                team.setCanSeeFriendlyInvisibles(true);
             }
 
         }
     }
 
     public static void removeHeartsDisplay(Player player){
-        org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
-        board.resetScores(player);
 
-
+        //Shitty solution but works ig
+        UhcCore.getInstance().getServer().getScheduler().runTaskLaterAsynchronously(UhcCore.getInstance(), ()->
+        {
+            org.bukkit.scoreboard.Scoreboard board = player.getScoreboard();
+            board.resetScores(player.getName());
+        }, 5L);
     }
 
 }
