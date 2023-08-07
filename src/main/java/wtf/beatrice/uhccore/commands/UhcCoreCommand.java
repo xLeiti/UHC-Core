@@ -61,7 +61,7 @@ public class UhcCoreCommand implements CommandExecutor
             }
             else if(args[0].equalsIgnoreCase("reload"))
             {
-                if(commandSender instanceof Player && ((Player)commandSender).isOp()){
+                if(commandSender instanceof Player && (commandSender.isOp())){
                     ReloadCommand.reloadCommand(commandSender);
                 }else{
                     commandSender.sendMessage("Sorry you need to be Admin to use this command");
@@ -98,17 +98,20 @@ public class UhcCoreCommand implements CommandExecutor
             }
             else if(args[0].equalsIgnoreCase("start"))
             {
-                if(commandSender instanceof Player && ((Player)commandSender).isOp()){
+                if(commandSender instanceof Player && (commandSender.isOp())){
                     StartCommand.startUhcCommand(commandSender, plugin);
                 }else{
                     commandSender.sendMessage("Sorry you need to be Admin to use this command");
                 }
+            }else if(args[0].equalsIgnoreCase("spectate"))
+            {
+                SpectateCommand.spectate(commandSender);
             }
 
         } else if (args.length == 2) {
             if(args[0].equalsIgnoreCase("removeplayer"))
             {
-                if(commandSender instanceof Player && ((Player)commandSender).isOp()){
+                if(commandSender instanceof Player && (commandSender.isOp())){
                     RemovePlayerCommand.removePlayer(commandSender, args, plugin);
                 }else{
                     commandSender.sendMessage("Sorry you need to be Admin to use this command");
@@ -116,7 +119,7 @@ public class UhcCoreCommand implements CommandExecutor
             }
             else if(args[0].equalsIgnoreCase("setglowing"))
             {
-                if(commandSender instanceof Player && ((Player)commandSender).isOp()){
+                if(commandSender instanceof Player && (commandSender.isOp())){
                     GlowingCommand.setGlowing(commandSender, args, plugin);
                 }else{
                     commandSender.sendMessage("Sorry you need to be Admin to use this command");
@@ -127,7 +130,7 @@ public class UhcCoreCommand implements CommandExecutor
         else if (args.length == 3) {
             if(args[0].equalsIgnoreCase("reviveplayer"))
             {
-                if(commandSender instanceof Player && ((Player)commandSender).isOp()){
+                if(commandSender instanceof Player && (commandSender.isOp())){
                     RevivePlayerCommand.revivePlayer(commandSender, args, plugin);
                 }else{
                     commandSender.sendMessage("Sorry you need to be Admin to use this command");

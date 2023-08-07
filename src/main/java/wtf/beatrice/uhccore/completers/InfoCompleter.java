@@ -22,6 +22,7 @@ public class InfoCompleter implements TabCompleter {
             list.add("setspawn");
             list.add("setfirework");
             list.add("setglowing");
+            list.add("spectate");
             list.add("start");
             list.add("reload");
             list.add("list");
@@ -38,6 +39,7 @@ public class InfoCompleter implements TabCompleter {
                 list.add("setspawn");
                 list.add("setfirework");
                 list.add("setglowing");
+                list.add("spectate");
                 list.add("start");
 
             } else

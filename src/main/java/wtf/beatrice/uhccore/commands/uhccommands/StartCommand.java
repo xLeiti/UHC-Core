@@ -133,10 +133,11 @@ public class StartCommand {
                         {
                             float currentExp = player.getExp();
                             float newExp = currentExp-(1F/(float)(loadDelay * 20L+1L));
-                            if(newExp>0f)
-                            player.setExp(newExp);
-                            else
-                            this.cancel();
+                            if(newExp>0f){
+                                player.setExp(newExp);
+                            }else{
+                                this.cancel();
+                            }
                         }
                     }.runTaskTimer(plugin, 0, 1);
 
