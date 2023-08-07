@@ -7,6 +7,7 @@ import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.*;
+import wtf.beatrice.uhccore.UhcCore;
 import wtf.beatrice.uhccore.utils.Cache;
 
 
@@ -51,10 +52,13 @@ public class SpectateCommand {
     }
 
     private static void setSpectator(Player player, Location location) {
-        player.sendMessage("Gamemode changed to spectator.");
-        player.sendMessage("Don't share any information with the playing teams!");
-        player.setGameMode(GameMode.SPECTATOR);
-        player.teleport(location);
-        player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
+        UhcCore.getInstance().getServer().getScheduler().runTask(UhcCore.getInstance(), () ->
+        {
+            player.sendMessage("Gamemode changed to spectator.");
+            player.sendMessage("Don't share any information with the playing teams!");
+            player.setGameMode(GameMode.SPECTATOR);
+            player.teleport(location);
+            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
+        });
     }
 }

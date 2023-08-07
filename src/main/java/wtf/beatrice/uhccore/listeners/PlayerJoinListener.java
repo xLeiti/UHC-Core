@@ -27,38 +27,30 @@ public class PlayerJoinListener implements Listener
         // Initialize needed variables for performance improvements and to avoid continuous method calls.
         Player player = e.getPlayer();
 
-
-
-        if(!(Cache.playerTeam.containsKey(player.getName())))
-        {
-            UhcUtils.tpSpawnAndGiveItem(player);
-            player.setHealth(20);
-            UhcUtils.removeHeartsDisplay(player);
-            player.setGlowing(false);
-        }else{
-
-            if(Cache.glowing){
-                player.setGlowing(true);
-            }
-
-
-            if(Cache.game_running) {
-                UhcUtils.displayHearts(player);
-            }else{
-                UhcUtils.removeHeartsDisplay(player);
-            }
-        }
-
         if(Cache.game_running){
             if((!Cache.nether_enabled)&&player.getWorld().getName().equals(Cache.uhcWorlds.get(1)))
             {
                 if(player.getGameMode() == GameMode.SURVIVAL)
                     player.setHealth(0);
             }
+            if(!(Cache.playerTeam.containsKey(player.getName())))
+            {
+                UhcUtils.tpSpawnAndGiveItem(player);
+                player.setHealth(20);
+                UhcUtils.removeHeartsDisplay(player);
+                player.setGlowing(false);
+            }else {
+                UhcUtils.displayHearts(player);
+                if (Cache.glowing) {
+                    player.setGlowing(true);
+                }
+            }
 
-
-
-
+        }else{
+            UhcUtils.tpSpawnAndGiveItem(player);
+            player.setHealth(20);
+            UhcUtils.removeHeartsDisplay(player);
+            player.setGlowing(false);
         }
 
 

@@ -1,9 +1,11 @@
 package wtf.beatrice.uhccore;
 
+import org.bukkit.WorldCreator;
 import wtf.beatrice.uhccore.commands.UhcCoreCommand;
 import wtf.beatrice.uhccore.commands.uhccommands.GlobalChat;
 import wtf.beatrice.uhccore.completers.InfoCompleter;
 import wtf.beatrice.uhccore.listeners.*;
+import wtf.beatrice.uhccore.utils.Cache;
 import wtf.beatrice.uhccore.utils.Debugger;
 import wtf.beatrice.uhccore.utils.configuration.FileUtils;
 import wtf.beatrice.uhccore.utils.MessageUtils;
@@ -32,6 +34,10 @@ public class UhcCore extends JavaPlugin
     public void onEnable()
     {
         instance = this;
+        //loading the flat world, don't want multiverse
+        new WorldCreator("flat").createWorld();
+        System.out.println("[WorldLoad] Loaded world flat");
+
         // We need to run this in a task, because the plugin has to be initialized AFTER all the worlds are loaded.
         // todo: after a few months, this sounds like a badly implemented idea
         // ^ i agree, why the hell is this happening?
