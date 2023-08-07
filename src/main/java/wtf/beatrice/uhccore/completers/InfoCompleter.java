@@ -1,5 +1,7 @@
 package wtf.beatrice.uhccore.completers;
 
+import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -18,16 +20,18 @@ public class InfoCompleter implements TabCompleter {
         List<String> list = new ArrayList<String>();
         if(args.length == 1)
         {
+            if(commandSender.isOp()){
+                list.add("setspawn");
+                list.add("setfirework");
+                list.add("setglowing");
+                list.add("start");
+                list.add("reload");
+                list.add("removeplayer");
+                list.add("reviveplayer");
+            }
             list.add("help");
-            list.add("setspawn");
-            list.add("setfirework");
-            list.add("setglowing");
             list.add("spectate");
-            list.add("start");
-            list.add("reload");
             list.add("list");
-            list.add("removeplayer");
-            list.add("reviveplayer");
             if(args[0].startsWith("h"))
             {
                 list.clear();
@@ -36,19 +40,22 @@ public class InfoCompleter implements TabCompleter {
             if(args[0].startsWith("s"))
             {
                 list.clear();
-                list.add("setspawn");
-                list.add("setfirework");
-                list.add("setglowing");
+                if(commandSender.isOp()) {
+                    list.add("setspawn");
+                    list.add("setfirework");
+                    list.add("setglowing");
+                    list.add("start");
+                }
                 list.add("spectate");
-                list.add("start");
-
             } else
             if(args[0].startsWith("r"))
             {
                 list.clear();
-                list.add("reload");
-                list.add("removeplayer");
-                list.add("reviveplayer");
+                if(commandSender.isOp()) {
+                    list.add("reload");
+                    list.add("removeplayer");
+                    list.add("reviveplayer");
+                }
             } else
             if(args[0].equalsIgnoreCase("list"))
             {
@@ -58,30 +65,33 @@ public class InfoCompleter implements TabCompleter {
         }else
         if(args.length==2)
         {
-            if(args[0].equalsIgnoreCase("removeplayer"))
-            {
-                for (String playerName : Cache.playerTeam.keySet()) {
-                    list.add(playerName);
-                }
-            }else
-            if(args[0].equalsIgnoreCase("reviveplayer"))
-            {
-                for (Player player : UhcCore.getInstance().getServer().getOnlinePlayers()) {
-                    if(!Cache.playerTeam.containsKey(player.getName())){
-                        list.add(player.getName());
+            if(commandSender.isOp()) {
+                if (args[0].equalsIgnoreCase("removeplayer")) {
+                    for (String playerName : Cache.playerTeam.keySet()) {
+                        list.add(playerName);
+                    }
+                } else if (args[0].equalsIgnoreCase("reviveplayer")) {
+                    for (Player player : UhcCore.getInstance().getServer().getOnlinePlayers()) {
+                        if (!Cache.playerTeam.containsKey(player.getName())) {
+                            list.add(player.getName());
+                        }
+                    }
+                } else if (args[0].equalsIgnoreCase("setglowing")) {
+                    list.add("true");
+                    list.add("false");
+                } else if (args[0].equalsIgnoreCase("tp")) {
+                    for(World world : Bukkit.getWorlds()){
+                        list.add(world.getName());
                     }
                 }
-            }else
-            if(args[0].equalsIgnoreCase("setglowing"))
-            {
-                list.add("true");
-                list.add("false");
             }
         }else
         if(args.length == 3 && args[0].equalsIgnoreCase("reviveplayer"))
         {
-            for(int i = 0; i < Cache.totalTeams; i++)
-                list.add(String.valueOf(i+1));
+            if(commandSender.isOp()) {
+                for (int i = 0; i < Cache.totalTeams; i++)
+                    list.add(String.valueOf(i + 1));
+            }
         }
 
         return list;

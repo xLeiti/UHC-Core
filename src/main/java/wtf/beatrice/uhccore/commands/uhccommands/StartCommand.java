@@ -121,6 +121,7 @@ public class StartCommand {
 
                     }
                     player.setInvulnerable(true);
+                    player.setCollidable(true);
                     player.teleport(hisTeamLoc);
                     player.getInventory().clear();
                     player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
@@ -174,9 +175,11 @@ public class StartCommand {
                 spawnWorld.setGameRule(GameRule.NATURAL_REGENERATION, false);
                 spawnWorld.setGameRule(GameRule.DO_IMMEDIATE_RESPAWN, true);
                 spawnWorld.setGameRule(GameRule.SPAWN_RADIUS, 0);
+                spawnWorld.setGameRule(GameRule.SPECTATORS_GENERATE_CHUNKS, false);
                 Nether.setGameRule(GameRule.NATURAL_REGENERATION, false);
                 Nether.setGameRule(GameRule.DO_IMMEDIATE_RESPAWN, true);
                 Nether.setGameRule(GameRule.SPAWN_RADIUS, 0);
+                Nether.setGameRule(GameRule.SPECTATORS_GENERATE_CHUNKS, false);
                 spawnWorld.setDifficulty(Difficulty.NORMAL);
                 spawnWorld.getWorldBorder().setCenter(borderCenter);
                 spawnWorld.getWorldBorder().setSize(borderSize);

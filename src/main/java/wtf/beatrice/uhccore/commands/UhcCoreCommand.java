@@ -126,6 +126,15 @@ public class UhcCoreCommand implements CommandExecutor
                 }
 
             }
+            else if(args[0].equalsIgnoreCase("tp"))
+            {
+                if(commandSender instanceof Player && (commandSender.isOp())){
+                    TeleportWorldCommand.teleportWorld(commandSender, args);
+                }else{
+                    commandSender.sendMessage("Sorry you need to be Admin to use this command");
+                }
+
+            }
         }
         else if (args.length == 3) {
             if(args[0].equalsIgnoreCase("reviveplayer"))

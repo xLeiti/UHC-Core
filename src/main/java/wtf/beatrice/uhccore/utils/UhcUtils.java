@@ -133,8 +133,9 @@ public class UhcUtils {
         }
 
         player.setGameMode(GameMode.SURVIVAL);
+        player.setSaturation(20);
+        player.setCollidable(false);
         player.teleport(Cache.spawn);
-
         // Clear the player's inventory and give hims the Teams selector item.
         UhcUtils.giveTeamsSelectorItem(player);
     }

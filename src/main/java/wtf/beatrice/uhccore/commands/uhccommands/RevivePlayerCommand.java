@@ -60,6 +60,7 @@ public class RevivePlayerCommand {
                             player.setHealth(20);
                             player.setFoodLevel(22);
                             player.setGameMode(GameMode.SURVIVAL);
+                            player.setCollidable(true);
 
                             if(Cache.glowing)
                                 player.setGlowing(true);

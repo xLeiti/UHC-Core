@@ -5,7 +5,6 @@ import wtf.beatrice.uhccore.commands.UhcCoreCommand;
 import wtf.beatrice.uhccore.commands.uhccommands.GlobalChat;
 import wtf.beatrice.uhccore.completers.InfoCompleter;
 import wtf.beatrice.uhccore.listeners.*;
-import wtf.beatrice.uhccore.utils.Cache;
 import wtf.beatrice.uhccore.utils.Debugger;
 import wtf.beatrice.uhccore.utils.configuration.FileUtils;
 import wtf.beatrice.uhccore.utils.MessageUtils;
