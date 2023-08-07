@@ -115,8 +115,10 @@ public class StartCommand {
                     for(String hiddenplayerName : Cache.playerTeam.keySet())
                     {
                         Player hiddenPlayer = plugin.getServer().getPlayer(hiddenplayerName);
-                        if (hiddenPlayer != null &&(Cache.playerTeam.get(hiddenplayerName) == teamNumber))
-                        player.hidePlayer(plugin, hiddenPlayer);
+                        if (hiddenPlayer != null &&(Cache.playerTeam.get(hiddenplayerName) == teamNumber)){
+                            player.hidePlayer(plugin, hiddenPlayer);
+                        }
+
                     }
                     player.setInvulnerable(true);
                     player.teleport(hisTeamLoc);
@@ -228,7 +230,8 @@ public class StartCommand {
             plugin.getServer().broadcastMessage("§4§lNether closed.");
             Cache.nether_enabled = false;
             for (Player p : nether.getPlayers()) {
-                p.setHealth(0);
+                if(p.getGameMode() == GameMode.SURVIVAL)
+                    p.setHealth(0);
             }
         }
     }

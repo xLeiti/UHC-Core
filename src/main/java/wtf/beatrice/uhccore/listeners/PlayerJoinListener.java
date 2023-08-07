@@ -1,6 +1,7 @@
 package wtf.beatrice.uhccore.listeners;
 
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.RenderType;
@@ -51,7 +52,8 @@ public class PlayerJoinListener implements Listener
         if(Cache.game_running){
             if((!Cache.nether_enabled)&&player.getWorld().getName().equals(Cache.uhcWorlds.get(1)))
             {
-                player.setHealth(0);
+                if(player.getGameMode() == GameMode.SURVIVAL)
+                    player.setHealth(0);
             }
 
 
