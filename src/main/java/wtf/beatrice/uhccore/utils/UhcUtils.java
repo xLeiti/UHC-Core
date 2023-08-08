@@ -61,31 +61,18 @@ public class UhcUtils {
     public static ChatColor returnColor(Integer teamNumber)
     {
 
-        ChatColor color;
-        switch (teamNumber) {
-            case 0:  color = ChatColor.BLUE;
-                break;
-            case 1:  color = ChatColor.RED;
-                break;
-            case 2:  color = ChatColor.GREEN;
-                break;
-            case 3:  color = ChatColor.YELLOW;
-                break;
-            case 4:  color = ChatColor.DARK_PURPLE;
-                break;
-            case 5:  color = ChatColor.GOLD;
-                break;
-            case 6:  color = ChatColor.BLACK;
-                break;
-            case 7:  color = ChatColor.LIGHT_PURPLE;
-                break;
-            case 8:  color = ChatColor.AQUA;
-                break;
-            default: color = ChatColor.WHITE;
-                break;
-        }
-
-        return color;
+        return switch (teamNumber) {
+            case 0 -> ChatColor.BLUE;
+            case 1 -> ChatColor.RED;
+            case 2 -> ChatColor.GREEN;
+            case 3 -> ChatColor.YELLOW;
+            case 4 -> ChatColor.DARK_PURPLE;
+            case 5 -> ChatColor.GOLD;
+            case 6 -> ChatColor.BLACK;
+            case 7 -> ChatColor.LIGHT_PURPLE;
+            case 8 -> ChatColor.AQUA;
+            default -> ChatColor.WHITE;
+        };
 
     }
 
