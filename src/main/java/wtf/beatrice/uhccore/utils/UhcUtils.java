@@ -119,7 +119,7 @@ public class UhcUtils {
             return;
         }
 
-        player.setGameMode(GameMode.SURVIVAL);
+        player.setGameMode(GameMode.ADVENTURE);
         player.setHealth(20);
         player.setSaturation(20);
         player.setCollidable(false);

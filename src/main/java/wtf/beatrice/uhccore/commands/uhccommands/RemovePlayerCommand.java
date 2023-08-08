@@ -36,7 +36,7 @@ public class RemovePlayerCommand {
                 {
                     // Update the total number of players in each team, and the total number of alive teams.
                     UhcUtils.updatePlayersPerTeam();
-
+                    UhcUtils.removeFromTeams(player);
                     // Check how many players are left in the to removed player's team.
                     int thisPlayerTeamPlayers = Cache.playersPerTeam.get(thisPlayerTeamNumber);
 
