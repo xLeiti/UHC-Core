@@ -7,6 +7,7 @@ import wtf.beatrice.uhccore.utils.Cache;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+import wtf.beatrice.uhccore.utils.UhcUtils;
 
 public class PlayerMoveListener implements Listener
 {
@@ -22,8 +23,15 @@ public class PlayerMoveListener implements Listener
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event)
     {
-        if(Cache.allowMovement) return;
-        event.setCancelled(true);
+        Player player = event.getPlayer();
+        if((player.getWorld().getName().equals(Cache.lobbyWorlds.get(0)))&&player.getLocation().getY()<0){
+            UhcUtils.tpSpawnAndGiveItem(player);
+        }
+
+        if(!Cache.allowMovement){
+            event.setCancelled(true);
+        }
+
     }
     @EventHandler
     public void onHunger(FoodLevelChangeEvent event) {

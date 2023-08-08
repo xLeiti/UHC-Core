@@ -14,8 +14,7 @@ public class TeleportWorldCommand {
 
     public static void teleportWorld(CommandSender sender, String[] args) {
 
-        if((sender instanceof Player)){
-            Player player = (Player) sender;
+        if((sender instanceof Player player)){
             for(World world : Bukkit.getWorlds()){
                 if(world.getName().equals(args[1])){
                     Location spawn = new Location(world, 0, 150, 0);

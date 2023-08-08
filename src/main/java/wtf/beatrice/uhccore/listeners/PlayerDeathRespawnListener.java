@@ -134,12 +134,7 @@ public class PlayerDeathRespawnListener implements Listener
 
                         for(Player currentPlayer : plugin.getServer().getOnlinePlayers())
                         {
-                            currentPlayer.setGlowing(false);
-                            currentPlayer.teleport(Cache.spawn);
-                            currentPlayer.setHealth(20);
-                            UhcUtils.removeHeartsDisplay(currentPlayer);
-                            // Clear his inventory and give him the Teams selector item.
-                            UhcUtils.giveTeamsSelectorItem(currentPlayer);
+                            UhcUtils.tpSpawnAndGiveItem(currentPlayer);
                             plugin.getLogger().log(Level.INFO,"UHC Finished!");
                             currentPlayer.sendTitle("Team " + teamName + " won!", "", 20 * 2, 20 * 10, 20 * 2);
 
@@ -162,7 +157,6 @@ public class PlayerDeathRespawnListener implements Listener
         // Load the player value.
         Player player = event.getPlayer();
         event.setRespawnLocation(Cache.spawn);
-        UhcUtils.removeHeartsDisplay(player);
         //player.teleport(Cache.spawn);
         // Check if the player died during the UHC, so we can get his death location.
         if(deadPlayers.containsKey(event.getPlayer().getName()))

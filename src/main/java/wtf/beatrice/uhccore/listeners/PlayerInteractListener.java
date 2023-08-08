@@ -73,7 +73,6 @@ public class PlayerInteractListener implements Listener
                 player.sendMessage("You can't join a team, the game is already running.");
                 return;
             }
-            String playername = player.getName();
 
             // Check if the clicked item is an existing Team.
             if(Cache.teamNames.contains(im.getDisplayName()))

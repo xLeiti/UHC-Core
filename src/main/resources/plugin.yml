@@ -7,5 +7,6 @@ commands:
   uhc:
     description: UHC-Core base command.
     usage: /uhc
+    aliases: Uhc, UHC
   g:
     aliases: global

@@ -29,8 +29,6 @@ public class RemovePlayerCommand {
                 Player player = plugin.getServer().getPlayer(name);
                 if(plugin.getServer().getOnlinePlayers().contains(player)){
                     UhcUtils.tpSpawnAndGiveItem(player);
-                    player.setHealth(20);
-                    UhcUtils.removeHeartsDisplay(player);
                 }
 
                 plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () ->

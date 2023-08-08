@@ -41,7 +41,7 @@ public class PlayerHitListener implements Listener
         }
 
         // check if they're both in the same team.
-        if((Cache.playerTeam.get(damagedName).equals(Cache.playerTeam.get(damagerName)))&&damagerName!=damagerName)
+        if(Cache.playerTeam.get(damagedName).equals(Cache.playerTeam.get(damagerName)))
         {
             // cancel the event.
             event.setCancelled(true);
@@ -53,15 +53,11 @@ public class PlayerHitListener implements Listener
     public void onPlayerDamage(EntityDamageEvent event)
     {
         // check if player
-        if(event.getEntity() instanceof Player)
+        if(event.getEntity() instanceof Player player)
         {
-            Player player = (Player) event.getEntity();
             if(player.getWorld().getName().equals(Cache.lobbyWorlds.get(0)))
             {
                 event.setCancelled(true);
-                if(player.getLocation().getY()<-150){
-                    UhcUtils.tpSpawnAndGiveItem(player);
-                }
                 UhcUtils.removeHeartsDisplay(player);
             }
         }

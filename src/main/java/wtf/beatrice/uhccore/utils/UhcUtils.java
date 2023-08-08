@@ -133,9 +133,13 @@ public class UhcUtils {
         }
 
         player.setGameMode(GameMode.SURVIVAL);
+        player.setHealth(20);
         player.setSaturation(20);
         player.setCollidable(false);
         player.teleport(Cache.spawn);
+        player.setGlowing(false);
+        //remove players heartdisplay in tab
+        UhcUtils.removeHeartsDisplay(player);
         // Clear the player's inventory and give hims the Teams selector item.
         UhcUtils.giveTeamsSelectorItem(player);
     }
