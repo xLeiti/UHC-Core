@@ -18,7 +18,6 @@ public class PlayerJoinListener implements Listener
 
         Player player = e.getPlayer();
         //register playerhearts display
-        UhcUtils.displayHearts(player);
 
         //check if game is running
         if(Cache.game_running){
@@ -33,6 +32,7 @@ public class PlayerJoinListener implements Listener
             {
                 UhcUtils.tpSpawnAndGiveItem(player);
             }else {
+                UhcUtils.displayHearts(player);
                 if (Cache.glowing) {
                     player.setGlowing(true);
                 }
