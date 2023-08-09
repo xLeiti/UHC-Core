@@ -100,6 +100,7 @@ public class FileUtils
         Cache.quitTeamItem.setItemMeta(im);
 
         Cache.totalTeams = config.getInt(ConfigEntry.TEAMS_NUMBER.path);
+        Cache.teamSize = config.getInt(ConfigEntry.TEAMS_SIZE.path);
 
         Cache.teamsSelectorGUI = new TeamsSelectorGUI();
         Cache.teamsSelectorGUI.initializeInv();

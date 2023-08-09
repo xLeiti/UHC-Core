@@ -20,6 +20,9 @@ public class Cache {
     // Integer to store how many teams are alive and playing.
     public static int playingTeams;
 
+    //Integer that sets the Teamsizes
+    public static int teamSize;
+
     // Peace-period in minutes.
     public static int peaceperiod;
 

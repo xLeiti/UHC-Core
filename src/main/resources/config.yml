@@ -2,6 +2,7 @@ settings:
   uhcworlds: ['world', 'world_nether']
   lobbyworlds: ['flat']
   teams: 8
+  team-size: 3
   friendly-fire: false
   peaceperiod: 15
   netherclosetime: 100

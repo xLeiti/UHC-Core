@@ -10,6 +10,7 @@ public enum ConfigEntry
     PEACE_PERIOD("settings.peaceperiod"),
     NETHER_CLOSE("settings.netherclosetime"),
     TEAMS_NUMBER("settings.teams"),
+    TEAMS_SIZE("settings.team-size"),
     TEAMS_NAMES("teams"),
     TEAMS_ITEMS("team-items"),
 
