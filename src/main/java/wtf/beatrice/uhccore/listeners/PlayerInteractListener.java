@@ -82,7 +82,7 @@ public class PlayerInteractListener implements Listener
                 // Load the team number from the team name in the teams list.
                 int teamNumber = Cache.teamNames.indexOf(im.getDisplayName());
 
-                if(Cache.teamNames.get(teamNumber).length() >= Cache.teamSize){
+                if(Cache.playersPerTeam.get(teamNumber) >= Cache.teamSize){
                     player.sendMessage("Team "+im.getDisplayName()+" is already full.");
                     return;
                 }
