@@ -1,7 +1,6 @@
 package wtf.beatrice.uhccore.listeners;
 
 
-import org.bukkit.ChatColor;
 import wtf.beatrice.uhccore.utils.Cache;
 import wtf.beatrice.uhccore.utils.UhcUtils;
 import org.bukkit.entity.Player;
@@ -82,7 +81,7 @@ public class PlayerInteractListener implements Listener
                 // Load the team number from the team name in the teams list.
                 int teamNumber = Cache.teamNames.indexOf(im.getDisplayName());
 
-                if(Cache.playersPerTeam.get(teamNumber) >= Cache.teamSize){
+                if(Cache.playersPerTeam.get(teamNumber)!=null && (Cache.playersPerTeam.get(teamNumber) >= Cache.teamSize)){
                     player.sendMessage("Team "+im.getDisplayName()+" is already full.");
                     return;
                 }

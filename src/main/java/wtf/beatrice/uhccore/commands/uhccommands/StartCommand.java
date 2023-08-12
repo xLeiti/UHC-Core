@@ -42,6 +42,7 @@ public class StartCommand {
         int borderTime = Cache.borderTime;
 
         int range = borderSize / 2;
+        int puffer = range / 10;
 
         Location borderCenter = new Location(spawnWorld, borderX, 64, borderZ);
 
@@ -58,8 +59,8 @@ public class StartCommand {
             for(int i = 0; i < Cache.totalTeams; i++)
             {
 
-                double x = NumberUtils.getRandomNumberInRange(borderX - range + 5, borderX + range - 5) + 0.5;
-                double z = NumberUtils.getRandomNumberInRange(borderZ - range + 5, borderZ + range - 5) + 0.5;
+                double x = NumberUtils.getRandomNumberInRange(borderX - range, borderX + range - puffer) + 0.5;
+                double z = NumberUtils.getRandomNumberInRange(borderZ - range, borderZ + range - puffer) + 0.5;
                 int y = spawnWorld.getHighestBlockYAt((int) x, (int) z); // todo: this method is shit, use the one i already implemented in Factions...
 
                 Location loc = new Location(spawnWorld, x, y + 1, z);
@@ -71,9 +72,7 @@ public class StartCommand {
 
                 spawnPerTeam.put(i, loc);
                 debugger.sendDebugMessage(Level.INFO, "found block! " + loc);
-                if(standingBlockType.equals(Material.WATER) || standingBlockType.equals(Material.LAVA) || standingBlockType.equals(Material.AIR)
-                || !upperBlockType.equals(Material.AIR) || !loc.getBlock().getType().equals(Material.AIR)|| (loc.getY() > 150)|| (loc.getY() < 60))
-                {
+                if(!standingBlockType.equals(Material.GRASS_BLOCK) || !upperBlockType.equals(Material.AIR) || !loc.getBlock().getType().equals(Material.AIR)|| (loc.getY() > 150)|| (loc.getY() < 60)) {
                     debugger.sendDebugMessage(Level.WARNING, "block is not valid: " + standingBlockType + ", " + loc.getBlock().getType() + ", " + upperBlockType);
                     i--;
                 }
