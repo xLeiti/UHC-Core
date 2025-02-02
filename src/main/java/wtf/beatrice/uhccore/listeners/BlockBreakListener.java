@@ -17,14 +17,22 @@ public class BlockBreakListener implements Listener {
     private UhcCore plugin;
 
     public BlockBreakListener(UhcCore givenPlugin) {plugin = givenPlugin;}
-    
+
     //Oak and dark_oak already drop apples
-    Material[] leaves = new Material[]{Material.SPRUCE_LEAVES, Material.ACACIA_LEAVES, Material.AZALEA_LEAVES, Material.BIRCH_LEAVES, Material.CHERRY_LEAVES, Material.FLOWERING_AZALEA_LEAVES, Material.JUNGLE_LEAVES, Material.MANGROVE_LEAVES};
+    Material[] leaves = new Material[]{Material.SPRUCE_LEAVES, Material.ACACIA_LEAVES, Material.AZALEA_LEAVES, Material.BIRCH_LEAVES, Material.CHERRY_LEAVES, Material.FLOWERING_AZALEA_LEAVES, Material.JUNGLE_LEAVES, Material.MANGROVE_LEAVES, Material.NETHER_WART_BLOCK, Material.WARPED_WART_BLOCK, Material.PALE_OAK_LEAVES};
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event)
     {
-        onBlockRemove(event.getBlock());
+        var block = event.getBlock();
+
+        this.onBlockRemove(block);
+
+        if(block.getType() == Material.BEE_NEST){
+            event.setDropItems(false);
+            block.getWorld().dropItemNaturally(block.getLocation().add(.5, .5, .5), new ItemStack(Material.GOLDEN_APPLE));
+        }
+
     }
 
     @EventHandler
